@@ -6,28 +6,50 @@
   <link href="https://fonts.googleapis.com/css?family=Inter:regular,700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Forum:regular&display=swap" rel="stylesheet" />
   <link rel="icon" href="./assets/icons/favicon.ico">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./style.css">
   <title>Library</title>
 </head>
 <body>
   <div class="site-wrapper">
-    <header class="header"></header>
+    <header class="header">
+      <div class="header__container">
+        <div class="header__logo">Brooklyn Public Library</div>
+        <nav class="header__menu header-menu">
+          <div class="header-menu__body">
+            <ul class="header-menu__items">
+              <li class="header-menu__item"><a href="#welcome" class="header-menu__link">About</a></li>
+              <li class="header-menu__item"><a href="#about" class="header-menu__link">Favorites</a></li>
+              <li class="header-menu__item"><a href="#favorites" class="header-menu__link">Coffee shop</a></li>
+              <li class="header-menu__item"><a href="#shop" class="header-menu__link">Contacts</a></li>
+              <li class="header-menu__item"><a href="#cards" class="header-menu__link">Library Card</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="header__profile-icon">
+          <img src="./assets/icons/icon_profile.svg" alt="rofile-icon">
+        </div>
+      </div>
+    </header>
     <main class="main">
-      <section class="welcome">
-        <div class="welcome__container"></div>
+      <section class="welcome" id="welcome">
+        <div class="welcome__container">
+          lorem
+        </div>
       </section>
-      <section class="about">
+      <section class="about" id="about">
         <div class="about__container"></div>
       </section>
-      <section class="favorites">
+      <section class="favorites" id="favorites">
         <div class="favorites__container"></div>
       </section>
-      <section class="coffee-shop shop">
+      <section class="coffee-shop shop" id="shop">
         <div class="coffee-shop__container"></div>
       </section>
-      <section class="our-contacts contacts">
+      <section class="our-contacts contacts" id="contacts">
         <div class="our-contacts__container"></div>
       </section>
-      <section class="digital-library-cards library-cards">
+      <section class="digital-library-cards library-cards" id="cards">
         <div class="library-cards__container"></div>
       </section>
     </main>
