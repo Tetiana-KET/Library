@@ -1,13 +1,16 @@
-body {
-  font-family: "";
-  font-weight: ;
-  color: ;
-  background-color: ;
+:root {
+  --grey-color:#8E8E8E;
+  --white-color: #FFFFFF;
+  --accent-color: #BB945F;
+  --black-color:#000000;
+  --dark-color:#0C0C0E;
 }
-[class*="__container"] {
-  max-width: ;
-  margin: 0 auto;
-  padding: 0 15px;
+
+body {
+  color: var(--black-color);
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 400;
 }
 .site-wrapper {
   min-height: 100%;
@@ -15,6 +18,12 @@ body {
   flex-direction: column;
   overflow: clip;
 }
+[class*="__container"] {
+  max-width: 1470px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
 
 @media (max-width: 991.98px) {
 
