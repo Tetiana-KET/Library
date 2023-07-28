@@ -25,6 +25,35 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
+section {
+  padding: 20px 0 40px;
+}
+.title {
+  color: var(--dark-color);
+  font-family: "Forum";
+  font-size: 40px;
+  line-height: 40px; /* 100% */
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  margin-bottom: 61px;
+  position: relative;
+}
+.title::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  flex-shrink: 0;
+  background-color: var(--dark-color);
+  bottom: -21px;
+  left: 28%;
+}
+.text {
+  color: var(--black-color);
+  text-align: center;
+  line-height: 40px; 
+}
 
 /* ----- H E A D E R ----- */
 
@@ -76,6 +105,90 @@ body {
   height: 600px;
   background: linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.10) 100%), url('./assets/images/welcome_bg.jpg') 0 50%/cover no-repeat;;
 }
+
+/* ----- A B O U T ----- */
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about__text {
+  margin-bottom: 20px;
+}
+.slider__cards-container {
+  display: flex;
+  overflow: hidden;
+  gap: 1.95%; /* 27/1440 */
+  margin-bottom: 31px;
+}
+.slider__card {
+  flex: 1 0 31.92%;
+}
+.pagination__items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination__item {
+  width: 26px;
+  height: 26px;
+  position: relative;
+}
+.pagination__item::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-color: var(--dark-color);
+  left: 20%;
+  top: 20%;
+  border-radius: 50%;
+}
+.pagination__item.active::after {
+  background-color: var(--accent-color);
+}
+
+/* ----- Favorites ----- */
+.favorites {
+  padding-top: 17px;
+}
+.favorites__container {
+  display: flex;
+  flex-direction: column;
+}
+.favorites__title {
+  align-self: center;
+  margin-bottom: 58px
+}
+.favorites__title::after {
+  left: 34%;
+}
+.favorites__sub-title {
+  color: var(--black-color);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 5px;
+  margin-bottom: 40px;
+}
+.sub-title{}
+.favourite__seasons-wrap {
+  display: flex;
+  align-items: center;
+}
+.subtitle {
+}
+.pick-season__input {
+  position: relative;
+  
+}
+.pick-season__label:not(:last-child) {
+  margin-right: 6.3%; /* 90/1440 */
+  line-height: normal;
+}
+
 
 @media (max-width: 991.98px) {
 

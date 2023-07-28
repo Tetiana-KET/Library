@@ -34,14 +34,45 @@
     <main class="main">
       <section class="welcome" id="welcome">
         <div class="welcome__container">
-          lorem
         </div>
       </section>
       <section class="about" id="about">
-        <div class="about__container"></div>
+        <div class="about__container">
+          <h2 class="adout__title title">About</h2>
+          <div class="about__text text">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside </div>
+          <div class="about__slider slider">
+            <ul class="slider__cards-container">
+              <li class="slider__card"><img src="./assets/images/about/01.png" alt=""></li>
+              <li class="slider__card"><img src="./assets/images/about/02.png" alt=""></li>
+              <li class="slider__card"><img src="./assets/images/about/03.png" alt=""></li>
+              <li class="slider__card"><img src="./assets/images/about/04.png" alt=""></li>
+              <li class="slider__card"><img src="./assets/images/about/05.png" alt=""></li>
+            </ul>
+          </div>
+          <div class="about__slider-pagination pagination">
+            <ul class="pagination__items">
+              <li class="pagination__item active"></li>
+              <li class="pagination__item"></li>
+              <li class="pagination__item"></li>
+            </ul>
+          </div>
+        </div>
       </section>
       <section class="favorites" id="favorites">
-        <div class="favorites__container"></div>
+        <div class="favorites__container">
+          <h2 class="favorites__title title">Favorites</h2>
+          <h3 class="favorites__sub-title sub-title">Pick favorites of season</h3>
+          <div class="favourite__seasons-wrap">
+            <input type="radio" class="favorites__pick-season pick-season__input" id="winter" name="pick-season" value="winter" checked>
+            <label for="winter" class="pick-season__label">Winter</label>
+            <input type="radio" class="favorites__pick-season pick-season__input" id="spring" name="pick-season" value="spring">
+            <label for="spring" class="pick-season__label">Spring</label>
+            <input type="radio" class="favorites__pick-season pick-season__input" id="summer" name="pick-season" value="summer">
+            <label for="summer" class="pick-season__label">Summer</label>
+            <input type="radio" class="favorites__pick-season pick-season__input" id="autumn" name="pick-season" value="autumn">
+            <label for="autumn" class="pick-season__label">Autumn</label>
+          </div>
+        </div>
       </section>
       <section class="coffee-shop shop" id="shop">
         <div class="coffee-shop__container"></div>
