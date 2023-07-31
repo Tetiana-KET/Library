@@ -318,6 +318,10 @@ section {
   right: -45px;
 }
 
+.spring-items {
+  display: none;
+}
+
 
 @media (max-width: 991.98px) {
 
