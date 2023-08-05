@@ -246,9 +246,13 @@ section {
   cursor: pointer;
 }
 .favourites__items-wrap {
+  row-gap: 42px;
+  display: flex;
+  flex-direction: column;
 }
 .favorites__items {
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-template-columns: repeat(2, 39%);
   grid-template-rows: repeat(2, 1fr);
   column-gap: 18.5%; /* 260/1440 */
@@ -258,6 +262,9 @@ section {
   position: relative;
   padding: 15px 25px 40px;
   border: 1px solid var(--black-color);
+}
+.picked-season {
+  display: grid;
 }
 .book__staff-picks {
   position: relative;
@@ -331,9 +338,7 @@ section {
   right: -45px;
 }
 
-.spring-items {
-  display: none;
-}
+
 
 
 @media (max-width: 991.98px) {
