@@ -74,15 +74,9 @@ section {
   line-height: 1.66;
   letter-spacing: 0.6px;
 }
-.header__menu {
-
-}
 .header-menu {
   flex: 1 1 auto;
   margin-right: 40px;
-}
-.header-menu__body {
-
 }
 .header-menu__items {
   display: flex;
@@ -94,8 +88,10 @@ section {
 .header-menu__item {
   line-height: 50px;
 }
-.header-menu__link {
+.header-menu__item:hover .header-menu__link {
+  color: var(--accent-color);
 }
+
 .header__profile-icon {
   float: inline-end;
 }
@@ -103,7 +99,24 @@ section {
 /* ----- W E L C O M E ----- */
 .welcome {
   height: 600px;
+  padding-top: 218px;
   background: linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.10) 100%), url('./assets/images/welcome_bg.jpg') 0 50%/cover no-repeat;;
+}
+.welcome__container {
+  padding: 0;
+}
+.welcome__title {
+  width: 42%;
+  padding: 35px 40px;
+  color: #FFF;
+  text-align: center;
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 /* ----- A B O U T ----- */
