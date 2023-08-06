@@ -26,7 +26,7 @@ body {
   padding: 0 15px;
 }
 section {
-  padding: 20px 0 40px;
+  padding: 20px 0 40px 5px;
 }
 .title {
   color: var(--dark-color);
@@ -188,6 +188,7 @@ section {
 }
 .favourite__seasons-wrap {
   display: flex;
+  width: 53%;
   align-items: center;
   padding-left: 5px;
   margin-bottom: 40px;
@@ -199,7 +200,9 @@ section {
 }
 .pick-season__label {
   position: relative;
-  display: inline-flex;
+  display: flex;
+  justify-content: start;
+  flex: 1 0 auto;
   align-items: center;
   user-select: none;
   line-height: normal;
@@ -301,7 +304,7 @@ section {
   margin-bottom: 20px;
 }
 .book_summary {
-  max-width: 355px;
+  max-width: 357px;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -381,7 +384,7 @@ section {
 }
 
 .menu__drinks {
-  flex: 1 1 30%;
+  flex: 1 1 29%;
 }
 .menu__desserts {
   flex: 1 1 33%;
@@ -424,7 +427,47 @@ section {
 
 /* ----- C O N T A C T S----- */
 
-
+.our-contacts {
+}
+.contacts {
+}
+.our-contacts__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contacts__title:after {
+  left: 39%;
+}
+.title {
+}
+.contacts__info-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 13.958333%; /* 201/1440 */
+}
+.contacts__info {
+  flex: 0 1 312.708333%; /* 4503/1440 */
+  line-height: 40px; /* 200% */
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+.contacts-info {
+  flex: 0 1 48.333333%; /* 696/1440 */
+}
+.contacts-info__title {
+}
+.contacts-info__text {
+}
+.tel {
+}
+.contacts-info__director {
+}
+.director-mail {
+}
+.contacts__map {
+}
 
 
 @media (max-width: 991.98px) {
