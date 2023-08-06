@@ -350,9 +350,56 @@ section {
   right: -45px;
 }
 
+/* ----- S H O P ----- */
 
+.coffee-shop {}
 
+.shop {}
 
+.coffee-shop__container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shop__title:after {
+  bottom: -26px;
+  left: 39%;
+}
+
+.title {}
+
+.shop__description {}
+
+.shop__menu-wrap {
+
+}
+
+.shop__menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu {}
+
+.menu__drinks {}
+
+.menu__title {}
+
+.menu__items {}
+
+.menu__item {}
+
+.item {}
+
+.item__text {}
+
+.item__line {}
+
+.item__price {}
+
+.menu__desserts {}
 @media (max-width: 991.98px) {
 
 }
