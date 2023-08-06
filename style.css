@@ -319,7 +319,8 @@ section {
   width: 75px;
   height: 30px;
   border-radius: 2px;
-  border: 1px solid #0C0C0E;
+  background-color: transparent;
+  border: 1px solid var(--dark-color);
   text-align: center;
   font-size: 10px;
   font-weight: 700;
@@ -330,6 +331,17 @@ section {
 .book__button:hover {
   background-color: var(--accent-color);
   border: 1px solid var(--accent-color);
+  cursor: pointer;
+}
+.own-button {
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+.own-button:hover {
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  background-color: transparent;
+  cursor: default;
 }
 .book__cover {
   display: inline-block;
