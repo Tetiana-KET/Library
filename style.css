@@ -413,18 +413,22 @@ section {
 }
 .item__text {
   display: inline-block;
-  width: 45%;
+  width: 48%;
   line-height: 40px; /* 200% */
   letter-spacing: 2px;
   text-transform: capitalize;
 }
 .item__line {
   display: inline-block;
-  width: 100px;
   height: 1px;
   background: var(--accent-color);
 }
-
+.menu__drinks .item__line {
+  width: 22.6%;
+}
+.menu__desserts .item__line {
+  width: 20%;
+}
 /* ----- C O N T A C T S----- */
 
 .our-contacts {
@@ -448,17 +452,29 @@ section {
   gap: 13.958333%; /* 201/1440 */
 }
 .contacts__info {
-  flex: 0 1 312.708333%; /* 4503/1440 */
+  flex: 0 1 31%; /* 4503/1440 */
   line-height: 40px; /* 200% */
   letter-spacing: 2px;
   text-transform: capitalize;
 }
 .contacts-info {
-  flex: 0 1 48.333333%; /* 696/1440 */
+  flex: 0 1 48.3%; 
+}
+.contacts__map {
+  flex: 0 1 66%; 
 }
 .contacts-info__title {
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+.title-senior {
+  margin-bottom: 24px;
 }
 .contacts-info__text {
+  margin-bottom: 20px;
+}
+.contacts-info__text-wrap {
+  margin-bottom: 38px;
 }
 .tel {
 }
@@ -466,8 +482,7 @@ section {
 }
 .director-mail {
 }
-.contacts__map {
-}
+
 
 
 @media (max-width: 991.98px) {
@@ -475,13 +490,17 @@ section {
 }
 
 @media (max-width: 770px) {
+  .favourites__items-wrap {
+    align-items: center;
+  }
   .favorites__items {
-    display: flex;
-    flex-direction: column;
+    width: 80%;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
     align-items: center;
   }
   .favorites__item {
-    width: 72%;
+    width: 100%;
   }
   
 }
