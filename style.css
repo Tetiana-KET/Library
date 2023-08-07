@@ -589,6 +589,59 @@ section {
   gap: 20px;
 }
 
+/* ----- F O O T E R ----- */
+
+.footer {
+}
+.footer__container {
+}
+.footer__info {
+}
+.footer__info-links {
+}
+.info-links {
+}
+.info-links__adress {
+}
+.adress {
+}
+.adress__link {
+}
+.info-links__social {
+}
+.social {
+}
+.social__item {
+}
+.social__link {
+}
+.social__icon {
+}
+.footer-info__open-hours {
+}
+.open {
+}
+.open__work-days {
+}
+.open__weekend {
+}
+.footer__line {
+}
+.footer__developer {
+}
+.develop {
+}
+.develop__year {
+}
+.develop__school {
+}
+.school__link {
+}
+.develop__developer {
+}
+.develop__link {
+}
+
 @media (max-width: 991.98px) {
 
 }
