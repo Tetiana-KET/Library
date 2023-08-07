@@ -489,10 +489,6 @@ section {
 
 /* ----- L I B R A R Y   C A R D S----- */
 
-.digital-library-cards {
-}
-.library-cards {
-}
 .library-cards__container {
   display: flex;
   flex-direction: column;
@@ -501,10 +497,9 @@ section {
 .library-cards__title:after {
   left: 43%;
 }
-.title {
-}
 .library-cards__wrap {
   display: flex;
+  justify-content: space-between;
   gap: 23.9%; /* 344/1440 */
 }
 .library-cards__find {
@@ -512,8 +507,6 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.card-find {
 }
 .card-find__title {
   font-size: 30px;
@@ -572,18 +565,28 @@ section {
   font-size: 20px;
   letter-spacing: 1px;
 }
-.library-cards__get {
-  flex: 0 1 31.7%; /* 456/1440 */
-}
 .card-get {
+  flex: 0 1 33%; /* 456/1440 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .card-get__title {
+  font-family: "Forum";
+  font-size: 30px;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  margin-bottom: 35px;
 }
 .card-get__text {
+  text-align: right;
+  line-height: 40px; /* 200% */
+  letter-spacing: 0.4px;
+  margin-bottom: 35px;
 }
 .card-get__button-wrap {
-}
-.card-get__button {
+  display: flex;
+  gap: 20px;
 }
 
 @media (max-width: 991.98px) {
