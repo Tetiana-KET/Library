@@ -88,12 +88,19 @@ section {
 .header-menu__item {
   line-height: 50px;
 }
+.header-menu__item:hover {
+  cursor: pointer;
+}
 .header-menu__item:hover .header-menu__link {
   color: var(--accent-color);
 }
-
 .header__profile-icon {
   float: inline-end;
+  transition: all .3s;
+}
+.header__profile-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 /* ----- W E L C O M E ----- */
@@ -483,7 +490,6 @@ section {
 .tel:hover, .director-mail:hover {
   color: var(--accent-color);
   text-shadow: 0 0 .65px #291a05, 0 0 .65px #333;
-
 }
 
 
@@ -592,55 +598,64 @@ section {
 /* ----- F O O T E R ----- */
 
 .footer {
-}
-.footer__container {
+  background-color: var(--dark-color);
+  color: #FFF;
 }
 .footer__info {
-}
-.footer__info-links {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 20px 5px 27px;
 }
 .info-links {
+  flex: 0 1 16%; /* 230/1440 */
 }
 .info-links__adress {
-}
-.adress {
-}
-.adress__link {
-}
-.info-links__social {
+  margin-bottom: 18px;
+  transition: all .3s;
 }
 .social {
+  display: flex;
+  gap: 15px;
 }
-.social__item {
+.social__item img{
+  transition: all .3s;
 }
-.social__link {
-}
-.social__icon {
+.social__item:hover .social__icon {
+  transform: scale(1.2);
 }
 .footer-info__open-hours {
-}
-.open {
+  flex: 0 1 15%; /* 150/1440 */
+  text-align: right;
 }
 .open__work-days {
-}
-.open__weekend {
+  margin-bottom: 10px;
 }
 .footer__line {
+  height: 1px;
+  background-color: var(--white-color);
 }
 .footer__developer {
-}
-.develop {
+  padding: 44px 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  line-height: 20px; /* 100% */
+  letter-spacing: 2px;
 }
 .develop__year {
+  margin-right: 1.7%; /* 24/1440 */
 }
-.develop__school {
+.develop__developer, .develop__school {
+  transition: all .3s;
 }
-.school__link {
+.info-links__adress:hover, .develop__developer:hover, .develop__school:hover {
+  color: var(--accent-color);
+
 }
-.develop__developer {
-}
-.develop__link {
-}
+
 
 @media (max-width: 991.98px) {
 
