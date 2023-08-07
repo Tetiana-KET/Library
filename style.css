@@ -206,6 +206,7 @@ section {
   align-items: center;
   user-select: none;
   line-height: normal;
+  transition: text-shadow .3s;
 }
 .pick-season__label:not(:last-child) {
   margin-right: 6.5%; /* 93/1440 */
@@ -229,7 +230,7 @@ section {
   border: 2px solid var(--black-color);
 }
 .pick-season__input:checked+label {
-  font-weight: 700;
+  text-shadow: 0 0 .65px #333, 0 0 .65px #333;
 }
 .pick-season__input:not(:disabled):not(:checked)+label:hover::before {
   border: 2px solid var(--black-color);
@@ -247,6 +248,9 @@ section {
 }
 .pick-season__label:hover::after {
   cursor: pointer;
+}
+.pick-season__label:hover {
+  text-shadow: 0 0 .65px #333, 0 0 .65px #333;
 }
 .favourites__items-wrap {
   row-gap: 42px;
@@ -382,7 +386,6 @@ section {
   justify-content: space-between;
   gap: 33%;
 }
-
 .menu__drinks {
   flex: 1 1 29%;
 }
@@ -431,10 +434,6 @@ section {
 }
 /* ----- C O N T A C T S----- */
 
-.our-contacts {
-}
-.contacts {
-}
 .our-contacts__container {
   display: flex;
   flex-direction: column;
@@ -442,8 +441,6 @@ section {
 }
 .contacts__title:after {
   left: 39%;
-}
-.title {
 }
 .contacts__info-wrap {
   width: 100%;
@@ -461,7 +458,10 @@ section {
   flex: 0 1 48.3%; 
 }
 .contacts__map {
-  flex: 0 1 66%; 
+  flex: 0 1 67%; 
+}
+.contacts__map {
+  height: 100%;
 }
 .contacts-info__title {
   font-weight: 700;
@@ -476,11 +476,13 @@ section {
 .contacts-info__text-wrap {
   margin-bottom: 38px;
 }
-.tel {
+.tel, .director-mail {
+  transition: text-shadow .3s;
 }
-.contacts-info__director {
-}
-.director-mail {
+.tel:hover, .director-mail:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 .65px #291a05, 0 0 .65px #333;
+
 }
 
 
