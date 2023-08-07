@@ -322,7 +322,7 @@ section {
   bottom: 11px;
   left: 24px;
 }
-.book__button {
+.button {
   width: 75px;
   height: 30px;
   border-radius: 2px;
@@ -335,7 +335,7 @@ section {
   letter-spacing: 1px;
   transition: all .5s ease 0s;
 }
-.book__button:hover {
+.button:hover {
   background-color: var(--accent-color);
   border: 1px solid var(--accent-color);
   cursor: pointer;
@@ -432,6 +432,7 @@ section {
 .menu__desserts .item__line {
   width: 20%;
 }
+
 /* ----- C O N T A C T S----- */
 
 .our-contacts__container {
@@ -486,6 +487,104 @@ section {
 }
 
 
+/* ----- L I B R A R Y   C A R D S----- */
+
+.digital-library-cards {
+}
+.library-cards {
+}
+.library-cards__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.library-cards__title:after {
+  left: 43%;
+}
+.title {
+}
+.library-cards__wrap {
+  display: flex;
+  gap: 23.9%; /* 344/1440 */
+}
+.library-cards__find {
+  flex: 0 1 43%; /* 600/1440 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-find {
+}
+.card-find__title {
+  font-size: 30px;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  margin-bottom: 30px;
+}
+.find-form {
+  border: 3px solid var(--accent-color);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: var(--white-color);
+  padding: 14px 20px 30px;
+}
+.find-form__wrap {
+  background: var(--accent-color);
+  padding: 20px 20px 0;
+  margin-bottom: 20px;
+}
+.find-form input {
+  display: inline-block;
+  width: 100%;  
+  color: var(--black-color);
+  border-radius: 10px;
+  border: none;
+  font-family: "Forum";
+  font-size: 30px;
+  line-height: 50px; /* 166.667% */
+  letter-spacing: 0.6px;
+  padding: 8px 20px;
+  margin-bottom: 25px;
+}
+.find-form input::placeholder {
+  color: var(--grey-color);
+  font-family: "Forum";
+  font-size: 30px;
+  line-height: 50px; /* 166.667% */
+  letter-spacing: 0.6px;
+  outline: none;
+}
+.find-form__title {
+  font-family: "Forum";
+  font-size: 30px;
+  line-height: 50px; /* 166.667% */
+  letter-spacing: 0.6px;
+  margin-bottom: 20px;
+}
+.find-form__btn-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.find-form__btn {
+  display: inline-block;
+  width: 242px;
+  height: 44px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.library-cards__get {
+  flex: 0 1 31.7%; /* 456/1440 */
+}
+.card-get {
+}
+.card-get__title {
+}
+.card-get__text {
+}
+.card-get__button-wrap {
+}
+.card-get__button {
+}
 
 @media (max-width: 991.98px) {
 
