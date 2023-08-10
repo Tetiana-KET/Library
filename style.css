@@ -749,11 +749,12 @@ section {
   .menu-open .header__burger span {
     width: 0;
   }
+  .welcome__title {
+    width: 77%;
+  }
 }
 
 @media (max-width: 770px) {
-
-
   .favourites__items-wrap {
     align-items: center;
   }
@@ -768,6 +769,12 @@ section {
   }
   
 }
-@media (max-width: 550px) {
-
+@media (max-width: 590px) {
+  .welcome {
+    padding-top: 100px;
+  }
+  .welcome__title {
+    width: 100%;
+    font-size: 35px;
+  }
 }

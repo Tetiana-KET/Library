@@ -41,5 +41,16 @@ ownButton.disabled = true;
   }
 
   document.addEventListener('click', toggleMenu);
+}
+
+window.onresize = function (e) {
+  const logo = document.querySelector('.header__logo');
+
+  if (window.screen.width <= 600) {
+    logo.textContent = 'BPL'
+  } else if (window.screen.width > 600) {
+    logo.textContent = 'Brooklyn Public Library'
+  }
 
 }
+
