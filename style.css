@@ -175,6 +175,9 @@ section {
 .pagination__item.active::after {
   background-color: var(--accent-color);
 }
+.item5, .item4 {
+  display: none;
+}
 
 /* ----- Favorites ----- */
 .favorites {
@@ -755,6 +758,12 @@ section {
 }
 
 @media (max-width: 770px) {
+  .about__text {
+    padding-right: 5px;
+  }
+  .favorites {
+    padding-top: 14px;
+  }
   .favourites__items-wrap {
     align-items: center;
   }
@@ -767,7 +776,16 @@ section {
   .favorites__item {
     width: 100%;
   }
-  
+  .item5, .item4 {
+    display: block;
+  }
+  .slider__cards-container {
+    width: 62%; /* 450/770 */
+    margin: 0 auto 16px;
+  }
+  .slider__card {
+    flex: 1 0 100%;
+  }
 }
 @media (max-width: 590px) {
   .welcome {
