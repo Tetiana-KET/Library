@@ -824,13 +824,88 @@ section {
   .slider__card {
     flex: 1 0 100%;
   }
+  .favorites__title {
+    margin-bottom: 61px;
+  }
+  .favourite__seasons-wrap {
+    width: 100%;
+  }
+  .pick-season__label::after {
+    width: 18%; /* 140/768 */
+  }
 }
-@media (max-width: 590px) {
+@media (max-width: 550px) {
   .welcome {
     padding-top: 100px;
   }
   .welcome__title {
     width: 100%;
     font-size: 35px;
+  }
+  .pick-season__label {
+    font-size: 15px;
+  }
+  .pick-season__label:not(:last-child) {
+    margin-right: 3%;
+  }
+  .pick-season__label::before {
+    width: 13px;
+    height: 13px;
+    margin-right: 5%; /* 20/550 */
+  }
+}
+@media (max-width: 333px) {
+  section {
+    padding: 20px 0 20px 5px;
+  }
+  .title {
+
+    font-size: 35px;
+    line-height: 35px;
+    margin-bottom: 35px;
+  }
+  .header-menu__body {
+    right: -150%;
+  }
+  .favourite__seasons-wrap {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .pick-season__label {
+    flex: 0 1 50%;
+  }
+  .pick-season__label:last-child {
+    margin-right: 3%;
+  }
+  .pick-season__label {
+    margin-bottom: 3%;
+  }
+  .favorites__items {
+    width: 100%;
+  }
+  .favorites__item {
+    padding: 10px 10px 35px;
+  }
+  .book__title, .book_author {
+    font-size: 13px;
+    line-height: 30px;
+    max-width: 70%;
+  }
+  .book_author {
+    margin-bottom: 10px;
+  }
+  .book_summary {
+    font-size: 14px;
+    line-height: 35px;
+    margin-bottom: 10px;
+  }
+  .book form {
+    left: 11px;
+  }
+  .book__cover {
+    width: 40%;
+    top: -12px;
+    right: -12px;
   }
 }
