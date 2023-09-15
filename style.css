@@ -705,7 +705,7 @@ section {
     z-index: 2;
     padding: 98px 20px;
     width: 332px;
-    background-color: var(--black-color);
+    background-color: var(--dark-color);;
     transition: all .5s;
   }
   .header-menu__items {
