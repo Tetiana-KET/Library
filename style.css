@@ -919,6 +919,16 @@ section {
     flex: 0 1 25%;
   }
 }
+@media (max-width: 700px) {
+  .book__cover {
+    width: 25%;
+    top: -25px;
+    right: -25px;
+  }
+  .favorites__item {
+    padding: 15px 20px 40px 20px;
+  }
+}
 
 @media (max-width: 550px) {
   section {
@@ -947,11 +957,13 @@ section {
     height: 13px;
     margin-right: 5%; /* 20/550 */
   }
-  .favorites__item {
-    padding: 15px 100px 40px 20px;
-  }
   .book__cover {
-    width: 38%;
+    width: 30%;
+    top: -10px;
+    right: -15px;
+  }
+  .book__title, .book_author {
+    max-width: 70%;
   }
   .menu {
     align-items: center;
@@ -974,7 +986,7 @@ section {
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 370px) {
   .header-menu__body {
     right: -150%;
   }
@@ -1001,7 +1013,6 @@ section {
   .book__title, .book_author {
     font-size: 13px;
     line-height: 30px;
-    max-width: 70%;
   }
   .book_author {
     margin-bottom: 10px;
@@ -1013,11 +1024,6 @@ section {
   }
   .book form {
     left: 11px;
-  }
-  .book__cover {
-    width: 40%;
-    top: -25px;
-    right: -12px;
   }
   .footer__info {
     flex-direction: column;
