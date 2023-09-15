@@ -294,7 +294,7 @@ section {
 }
 .favorites__item {
   position: relative;
-  padding: 15px 20px 40px;
+  padding: 15px 170px 40px 20px;
   border: 1px solid var(--black-color);
 }
 .picked-season {
@@ -684,7 +684,6 @@ section {
 
 }
 
-
 @media (max-width: 1024px) {
   .header__burger-overlay {
     position: fixed;
@@ -771,6 +770,22 @@ section {
   .welcome__title {
     width: 77%;
   }
+  .favourites__items-wrap {
+    align-items: center;
+  }
+  .favorites__items {
+    width: 80%;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    row-gap: 40px;
+  }
+  .favorites__item {
+    width: 93%;
+    min-height: 555px;
+  }
+  .book_summary {
+    max-width: none;
+  }
 }
 
 @media (max-width: 770px) {
@@ -828,29 +843,12 @@ section {
     width: 100%;
     padding-left: 7px;
   }
-  .favourites__items-wrap {
-    align-items: center;
-    width: 100%;
-  }
-  .favorites__items {
-    width: 80%;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    row-gap: 40px;
-  }
-  .favorites__item {
-    width: 93%;
-    padding: 15px 19px 40px;
-    min-height: 555px;
-  }
-
   .pick-season__label::after {
     width: 18%; /* 140/768 */
   }
   .pick-season__label:not(:last-child) {
     margin-right: 8%;
   }
-
   .book form {
     left: 20px;
     bottom: 13px;
@@ -923,6 +921,14 @@ section {
 }
 
 @media (max-width: 550px) {
+  section {
+    padding: 20px 0 20px 5px;
+  }
+  .title {
+    font-size: 35px;
+    line-height: 35px;
+    margin-bottom: 35px;
+  }
   .welcome {
     padding-top: 100px;
   }
@@ -941,17 +947,34 @@ section {
     height: 13px;
     margin-right: 5%; /* 20/550 */
   }
+  .favorites__item {
+    padding: 15px 100px 40px 20px;
+  }
+  .book__cover {
+    width: 38%;
+  }
+  .menu {
+    align-items: center;
+  }
+  .menu__desserts {
+    align-self: center;
+  }
+  .menu__drinks, .menu__desserts {
+    width: 90%;
+    text-align: start;
+  }
+  .find-form {
+    width: 95%;
+  }
+  .info-links {
+    flex: 0 1 45%;
+  }
+  .footer-info__open-hours {
+    flex: 0 1 45%;
+  }
 }
 
-@media (max-width: 333px) {
-  section {
-    padding: 20px 0 20px 5px;
-  }
-  .title {
-    font-size: 35px;
-    line-height: 35px;
-    margin-bottom: 35px;
-  }
+@media (max-width: 350px) {
   .header-menu__body {
     right: -150%;
   }
@@ -993,7 +1016,26 @@ section {
   }
   .book__cover {
     width: 40%;
-    top: -12px;
+    top: -25px;
     right: -12px;
+  }
+  .footer__info {
+    flex-direction: column;
+  }
+  .info-links, .footer-info__open-hours {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    text-align: center;
+    align-items: center;
+  }
+  .info-links {
+    margin-bottom: 20px;
+  }
+  .footer__developer {
+    padding: 25px 5px;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
   }
 }
