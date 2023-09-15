@@ -142,6 +142,12 @@ section {
 .about__text {
   margin-bottom: 20px;
 }
+.slider {
+  position: relative;
+}
+.slider__prev-btn, .slider__next-btn {
+  display: none;
+}
 .slider__cards-container {
   display: flex;
   overflow: hidden;
@@ -160,6 +166,13 @@ section {
   width: 26px;
   height: 26px;
   position: relative;
+  transition: all .8s;
+}
+.pagination__item:hover {
+  cursor: pointer;
+}
+.pagination__item:hover::after {
+  background-color: var(--accent-color);
 }
 .pagination__item::after {
   position: absolute;
@@ -778,6 +791,31 @@ section {
   }
   .item5, .item4 {
     display: block;
+  }
+  .slider-btn {
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    background-color: transparent;
+    border: none;
+    transition: all .5s;
+  }
+  .slider-btn:hover {
+    cursor: pointer;
+  }
+  .slider__prev-btn {
+    background-image: url('./assets/icons/Carret_Left.svg');
+    left: 7.7%;
+  }
+  .slider__next-btn {
+    background-image: url('./assets/icons/Carret_Right.svg');
+    right: 8.5%; /* 57/768 */
+  }
+  .slider-btn:disabled {
+    cursor: default;
+    opacity: 0.3;
   }
   .slider__cards-container {
     width: 62%; /* 450/770 */
