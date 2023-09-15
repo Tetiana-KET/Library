@@ -507,6 +507,9 @@ section {
 .contacts-info__text-wrap {
   margin-bottom: 40px;
 }
+.director-mail {
+  font-weight: 700;
+}
 .tel, .director-mail {
   transition: text-shadow .3s;
 }
@@ -865,7 +868,6 @@ section {
   .menu {
     padding-left: 5px;
     flex-direction: column;
-
   }
   .menu__drinks {
     margin-bottom: 40px;
@@ -879,6 +881,44 @@ section {
     align-self: flex-end;
     width: 66%;
     padding-right: 5px
+  }
+  .contacts__info-wrap {
+    flex-direction: column;
+    padding-left: 6px;
+
+  }
+  .contacts__info  {
+    margin-bottom: 100px;
+  }
+  .contacts__map {
+    flex: 1 1 auto;
+    height: 414px;
+  }
+  .library-cards__wrap {
+    flex-direction: column;
+  }
+  .find-form {
+    width: 81%;
+    padding: 16px 15px 29px 16px;
+    margin-bottom: 21px;
+  }
+  .card-get {
+    align-items: center;
+    padding: 0;
+  }
+  .card-get__title {
+    margin-bottom: 38px;
+  }
+  .card-get__text {
+    width: 75%;
+    text-align: center;
+    margin-bottom: 41px;
+  }
+  .info-links {
+    flex: 0 1 30%;
+  }
+  .footer-info__open-hours {
+    flex: 0 1 25%;
   }
 }
 
