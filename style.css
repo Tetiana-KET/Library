@@ -188,7 +188,7 @@ section {
 .pagination__item.active::after {
   background-color: var(--accent-color);
 }
-.item5, .item4 {
+.pag-item5, .pag-item4 {
   display: none;
 }
 
