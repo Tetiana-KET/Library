@@ -58,8 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//SLIDER
 	let position = 0;
-	let slidesToShow = window.screen.width <= 770 ? 1 : 3;
-	const slidesToScroll = 1;
+	let dotIndex = 0;
 
 	const sliderContainer = document.querySelector('.slider');
 	const sliderTrack = document.querySelector('.slider__cards-container');
@@ -71,17 +70,28 @@ window.addEventListener('DOMContentLoaded', () => {
 	const paginationItems = Array.from(document.querySelectorAll('.pagination__item'));
 	const paginationItem = document.querySelector('.pagination__item');
 
-	const itemWidth = sliderContainer.clientWidth / slidesToShow; //set every item width
-
-  function setSlidesWidth () {
-    sliderItems.forEach((item) => {
-      item.style.minWidth = window.screen.width <= 770 ? `100%` : `31.92%`
-    })
-  }
-  setSlidesWidth();
+	function checkButtons() {}
+	function setActiveDot(dotIndex) {
+		paginationItems.forEach((dot) => {
+			dot.classList.remove('dot__active');
+			dot.removeAttribute('disabled');
+		});
+		paginationItems[dotIndex].classList.add('dot__active');
+		paginationItems[dotIndex].setAttribute('disabled', '');
+	}
 
 	//EVENT LISTENERS
-	document.addEventListener('click', toggleMenu)
+	document.addEventListener('click', toggleMenu);
+
+	paginationItems.forEach((dot, i) => {
+		dot.addEventListener('click', () => {
+			position =  window.screen.width <= 770 ? 102 * i : 34 * i;
+			sliderTrack.style.left = -position + '%';
+			dotIndex = i;
+			checkButtons();
+			setActiveDot(dotIndex);
+		})
+	})
 })
 
 
