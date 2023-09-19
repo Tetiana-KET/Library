@@ -55,21 +55,14 @@ window.addEventListener('DOMContentLoaded', () => {
 		unlockBodyScroll()
 	}
 
-
 	//SLIDER
 	let position = 0;
 	let dotIndex = 0;
 
-	const sliderContainer = document.querySelector('.slider');
 	const sliderTrack = document.querySelector('.slider__cards-container');
-	const sliderItem = document.querySelector('.slider__card');
-	const sliderItems = Array.from(document.querySelectorAll('.slider__card'));
 	const prevBtn = document.querySelector('.slider__prev-btn');
 	const nextBtn = document.querySelector('.slider__next-btn');
-	const pagination = document.querySelector('.pagination');
 	const paginationItems = Array.from(document.querySelectorAll('.pagination__item'));
-	const paginationItem = document.querySelector('.pagination__item');
-
 
 	function setActiveDot(dotIndex) {
 		paginationItems.forEach((dot) => {
@@ -114,20 +107,43 @@ window.addEventListener('DOMContentLoaded', () => {
 		setActiveDot(dotIndex);
 		checkButtons();
 	}
-	
 
 	//EVENT LISTENERS
 	document.addEventListener('click', toggleMenu);
-
 	paginationItems.forEach((dot, i) => {
 		dot.addEventListener('click', () => {
 			dotIndex = i;
 			moveSlider();
 		})
 	});
-
 	prevBtn.addEventListener('click', setPrevSlide);
 	nextBtn.addEventListener('click', setNextSlide);
+
+	//FAVORITES "SLIDER"
+	const pickSeasonInput = Array.from(document.querySelectorAll('.pick-season__input'));
+	const favoriteSeasons = Array.from(document.querySelectorAll('.favorites__items'));
+
+	document.addEventListener('click', (e)=> {
+		if (e.target.classList.contains('pick-season__input')) {
+			if (!e.target.hasAttribute('checked')) {
+
+				pickSeasonInput.forEach(input => {
+					input.removeAttribute('checked', '');
+					e.target.setAttribute('checked', '');
+				});
+
+				favoriteSeasons.forEach((season) => {
+
+					season.classList.remove('picked-season');
+					if (season.classList.contains(`${e.target.value}`)) {
+						season.classList.add('picked-season');
+					}
+				});
+			}
+		}
+	})
+
+
 })
 
 
