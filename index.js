@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		} else if (window.screen.width > 600) {
 			logo.textContent = 'Brooklyn Public Library'
 		};
-    setSlidesWidth();
 	}
 
 	const body = document.body;
@@ -56,6 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		unlockBodyScroll()
 	}
 
+
 	//SLIDER
 	let position = 0;
 	let dotIndex = 0;
@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	const paginationItems = Array.from(document.querySelectorAll('.pagination__item'));
 	const paginationItem = document.querySelector('.pagination__item');
 
-	function checkButtons() {}
+
 	function setActiveDot(dotIndex) {
 		paginationItems.forEach((dot) => {
 			dot.classList.remove('dot__active');
@@ -79,19 +79,55 @@ window.addEventListener('DOMContentLoaded', () => {
 		paginationItems[dotIndex].classList.add('dot__active');
 		paginationItems[dotIndex].setAttribute('disabled', '');
 	}
+	function checkButtons() {
+		prevBtn.removeAttribute('disabled');
+		nextBtn.removeAttribute('disabled');
+		if (dotIndex === 0) {
+			prevBtn.setAttribute('disabled', '');
+		} 
+		if (dotIndex === paginationItems.length-1) {
+			nextBtn.setAttribute('disabled', '')
+		}
+	}
+	function moveSlider() {
+		position = window.screen.width <= 770 ? 102 * dotIndex : 34 * dotIndex;
+		sliderTrack.style.left = -position + '%';
+		checkButtons();
+		setActiveDot(dotIndex);
+	}
+	function setNextSlide () {
+		let k = paginationItems.length-1;
+		if (position < window.screen.width <= 770 ? 102*k : 34*k) {
+			position += window.screen.width <= 770 ? 102 : 34;
+			dotIndex++;
+		}
+		sliderTrack.style.left = -position + '%';
+		setActiveDot(dotIndex);
+		checkButtons();
+	}
+	function setPrevSlide() {
+		if (position > 0) {
+			position -= window.screen.width <= 770 ? 102 : 34;
+			dotIndex--;
+		}
+		sliderTrack.style.left = -position + '%';
+		setActiveDot(dotIndex);
+		checkButtons();
+	}
+	
 
 	//EVENT LISTENERS
 	document.addEventListener('click', toggleMenu);
 
 	paginationItems.forEach((dot, i) => {
 		dot.addEventListener('click', () => {
-			position =  window.screen.width <= 770 ? 102 * i : 34 * i;
-			sliderTrack.style.left = -position + '%';
 			dotIndex = i;
-			checkButtons();
-			setActiveDot(dotIndex);
+			moveSlider();
 		})
-	})
+	});
+
+	prevBtn.addEventListener('click', setPrevSlide);
+	nextBtn.addEventListener('click', setNextSlide);
 })
 
 
