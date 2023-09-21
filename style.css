@@ -14,6 +14,9 @@ body {
   font-size: 20px;
   font-weight: 400;
 }
+body.no-scroll {
+  overflow: hidden;
+}
 .site-wrapper {
   min-height: 100%;
   display: flex;
@@ -102,7 +105,9 @@ section {
   cursor: pointer;
   transform: scale(1.2);
 }
-
+.header__burger {
+  display: none;
+}
 /* ----- W E L C O M E ----- */
 .welcome {
   height: 600px;
@@ -130,6 +135,7 @@ section {
 /* ----- A B O U T ----- */
 
 .about__container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,11 +143,20 @@ section {
 .about__text {
   margin-bottom: 20px;
 }
-.slider__cards-container {
-  display: flex;
+.slider {
+  position: relative;
   overflow: hidden;
+}
+.slider__prev-btn, .slider__next-btn {
+  display: none;
+}
+.slider__cards-container {
+  position: relative;
+  display: flex;
+  left: 0;
   gap: 1.95%; /* 27/1440 */
   margin-bottom: 31px;
+  transition: all 1s;
 }
 .slider__card {
   flex: 1 0 31.92%;
@@ -155,6 +170,16 @@ section {
   width: 26px;
   height: 26px;
   position: relative;
+  transition: all .8s;
+}
+.pagination__item:hover {
+  cursor: pointer;
+}
+.pagination__item[disabled] {
+  cursor: default;
+}
+.pagination__item:hover::after {
+  background-color: var(--accent-color);
 }
 .pagination__item::after {
   position: absolute;
@@ -167,8 +192,11 @@ section {
   top: 20%;
   border-radius: 50%;
 }
-.pagination__item.active::after {
+.pagination__item.dot__active::after {
   background-color: var(--accent-color);
+}
+.pag-item5, .pag-item4 {
+  display: none;
 }
 
 /* ----- Favorites ----- */
@@ -262,22 +290,32 @@ section {
   row-gap: 42px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .favorites__items {
-  /* display: grid; */
-  display: none;
+  display: grid;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
   grid-template-columns: repeat(2, 39%);
   grid-template-rows: repeat(2, 1fr);
   column-gap: 18.5%; /* 260/1440 */
   row-gap: 42px;
+  transition: all ease 1s;
 }
 .favorites__item {
+  height: 555px;
   position: relative;
-  padding: 15px 20px 40px;
+  padding: 15px 170px 40px 20px;
   border: 1px solid var(--black-color);
 }
 .picked-season {
-  display: grid;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
 }
 .book__staff-picks {
   position: relative;
@@ -314,7 +352,6 @@ section {
   margin-bottom: 20px;
 }
 .book_summary {
-  max-width: 357px;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -366,7 +403,6 @@ section {
 /* ----- S H O P ----- */
 
 .coffee-shop__container {
-  padding-top: 6px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -485,6 +521,9 @@ section {
 }
 .contacts-info__text-wrap {
   margin-bottom: 40px;
+}
+.director-mail {
+  font-weight: 700;
 }
 .tel, .director-mail {
   transition: text-shadow .3s;
@@ -657,29 +696,418 @@ section {
 }
 .info-links__adress:hover, .develop__developer:hover, .develop__school:hover {
   color: var(--accent-color);
-
 }
 
+@media (max-width: 1420px) {
+  .favorites__items {
+    grid-template-columns: repeat(2, 45%);
+    column-gap: 9%;
+  }
+  .favorites__item {
+    padding: 15px 155px 40px 20px;
+  }
+  .book__cover {
+    width: 30%;
+    right: -25px;
+  }
+}
 
-@media (max-width: 991.98px) {
+@media (max-width: 1150px) {
+  .favorites__items {
+    grid-template-columns: repeat(2, 46%);
+    column-gap: 4%;
+  }
+  .favorites__item {
+    padding: 15px 100px 40px 20px;
+  }
+  .book__cover {
+    width: 25%;
+  }
+}
 
+@media (max-width: 1024px) {
+  .header__burger-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all .5s;
+  }
+  .active-overlay {
+    right: 0;
+  }
+  .header-menu__body {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 2;
+    padding: 98px 20px;
+    width: 332px;
+    background-color: var(--dark-color);;
+    transition: all .5s;
+  }
+  .header-menu__items {
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .header-menu__item {
+    text-align: center;
+  }
+  .header__profile-icon {
+    z-index: 3;
+  }
+  .header__burger {
+    padding: 0;
+    display: block;
+    border: none;
+    flex: 0 0 45px;
+    height: 20px;
+    position: relative;
+    z-index: 5;
+    background-color: transparent;
+    margin-left: 40px;
+  }
+  .header__burger span, .header__burger::before, .header__burger::after {
+    content: '';
+    right: 0;
+    top: 40%;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white-color);
+    transition: all .3s ease 0s;
+  }
+  .header__burger::before {
+    top: -2px;
+  }
+  .header__burger::after {
+    top: 18px;
+  }
+  .header__burger:hover {
+    cursor: pointer;
+  }
+  .header__burger:hover.header__burger span, .header__burger:hover::before, .header__burger:hover::after{
+    background-color: var(--accent-color);
+  }
+  .menu-open .header-menu__body {
+    right: 0;
+  }
+  .menu-open .header__burger::before {
+    transform: rotate(-45deg);
+    top: calc(50% - 1.3px);
+    right: -4px;
+  }
+  .menu-open .header__burger::after {
+    transform: rotate(45deg);
+    top: calc(50% - 2px);
+    right: -6px;
+  }
+  .menu-open .header__burger span {
+    width: 0;
+  }
+  .welcome__title {
+    width: 77%;
+  }
+  .favourites__items-wrap {
+    align-items: center;
+    width: 80%;
+    margin: auto;
+  }
+  .favorites__items {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    row-gap: 40px;
+  }
+  .favorites__item {
+    min-height: 555px;
+  }
+  .book_summary {
+    max-width: none;
+  }
+  .book__cover {
+    width: 20%;
+  }
 }
 
 @media (max-width: 770px) {
-  .favourites__items-wrap {
-    align-items: center;
+  section {
+    padding: 20px 0 40px 0px;
   }
-  .favorites__items {
-    width: 80%;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    align-items: center;
+  .about__text {
+    padding-right: 3px;
+  }
+  .slider-btn {
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 60.5%;
+    background-color: transparent;
+    border: none;
+    transition: all .5s;
+  }
+  .slider-btn:hover {
+    cursor: pointer;
+  }
+  .slider__prev-btn {
+    background-image: url('./assets/icons/Carret_Left.svg');
+    left: 10.3%;
+  }
+  .slider__next-btn {
+    background-image: url('./assets/icons/Carret_Right.svg');
+    right: 10.2%; /* 57/768 */
+  }
+  .slider-btn:disabled {
+    cursor: default;
+    opacity: 0.3;
+  }
+  .slider {
+    width: 61%;
+  }
+  .slider__cards-container {
+    margin: 0 auto 16px;
+  }
+  .slider__card {
+    flex: 1 0 100%;
+  }
+  .pag-item5, .pag-item4 {
+    display: block;
+  }
+  .favorites {
+    padding-top: 14px;
   }
   .favorites__item {
+    padding: 15px 210px 40px 20px;
+  }
+  .favorites__title {
+    margin-bottom: 61px;
+  }
+  .favorites__sub-title {
+    padding-left: 5px;
+  }
+  .favourite__seasons-wrap {
+    width: 100%;
+    padding-left: 7px;
+  }
+  .pick-season__label::after {
+    width: 18%; /* 140/768 */
+  }
+  .pick-season__label:not(:last-child) {
+    margin-right: 8%;
+  }
+  .book form {
+    left: 20px;
+    bottom: 13px;
+  }
+  .book__cover {
+    width: 34%;
+    bottom: -7px;
+    right: -1px;
+  }
+  .shop {
+    padding-top: 20px;
+  }
+  .shop__description {
+    padding-right: 0px;
+  }
+  .menu {
+    padding-left: 5px;
+    flex-direction: column;
+  }
+  .menu__drinks {
+    margin-bottom: 40px;
+    width: 60%; /* 438/768 */
+  }
+  .menu__drinks .item__line {
+    width: 23%;
+    margin-left: -7px;
+  }
+  .menu__desserts {
+    align-self: flex-end;
+    width: 66%;
+    padding-right: 5px
+  }
+  .contacts__info-wrap {
+    flex-direction: column;
+    padding-left: 6px;
+
+  }
+  .contacts__info  {
+    margin-bottom: 100px;
+  }
+  .contacts__map {
+    flex: 1 1 auto;
+    height: 414px;
+  }
+  .library-cards__wrap {
+    flex-direction: column;
+  }
+  .find-form {
+    width: 81%;
+    padding: 16px 15px 29px 16px;
+    margin-bottom: 21px;
+  }
+  .card-get {
+    align-items: center;
+    padding: 0;
+  }
+  .card-get__title {
+    margin-bottom: 38px;
+  }
+  .card-get__text {
+    width: 75%;
+    text-align: center;
+    margin-bottom: 41px;
+  }
+  .info-links {
+    flex: 0 1 30%;
+  }
+  .footer-info__open-hours {
+    flex: 0 1 25%;
+  }
+}
+
+@media (max-width: 725px) {
+  .favorites__item {
+    padding: 15px 85px 40px 20px;
+  }
+  .book__cover {
+    width: 25%;
+    bottom: -15px;
+    right: -45px;
+  }
+  .book_summary {
+    font-size: 14px;
+    line-height: 35px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 550px) {
+  section {
+    padding: 20px 0 20px 5px;
+  }
+  .title {
+    font-size: 35px;
+    line-height: 35px;
+    margin-bottom: 35px;
+  }
+  .welcome {
+    padding-top: 100px;
+  }
+  .welcome__title {
+    width: 100%;
+    font-size: 35px;
+  }
+  .pick-season__label {
+    font-size: 15px;
+  }
+  .pick-season__label:not(:last-child) {
+    margin-right: 3%;
+  }
+  .pick-season__label::before {
+    width: 13px;
+    height: 13px;
+    margin-right: 5%; /* 20/550 */
+  }
+  .favorites__item {
+    padding: 15px 20px 40px 20px;
+  }
+  .book_summary {
+    line-height: 26px;
+    max-height: 75%;
+    overflow: hidden;
+    margin: 0;
+  }
+  .book__cover {
+    width: 28%;
+    top: -10px;
+    right: -10px;
+  }
+  .book__title, .book_author {
+    max-width: 70%;
+    line-height: 30px;
+    letter-spacing: 1px;
+  }
+  .menu {
+    align-items: center;
+  }
+  .menu__desserts {
+    align-self: center;
+  }
+  .menu__drinks, .menu__desserts {
+    width: 90%;
+    text-align: start;
+  }
+  .find-form {
+    width: 95%;
+  }
+  .info-links {
+    flex: 0 1 45%;
+  }
+  .footer-info__open-hours {
+    flex: 0 1 45%;
+  }
+}
+
+@media (max-width: 370px) {
+  .header-menu__body {
+    right: -150%;
+  }
+  .favourite__seasons-wrap {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .pick-season__label {
+    flex: 0 1 50%;
+  }
+  .pick-season__label:last-child {
+    margin-right: 3%;
+  }
+  .pick-season__label {
+    margin-bottom: 3%;
+  }
+  .favorites__items {
     width: 100%;
   }
-  
-}
-@media (max-width: 550px) {
-
+  .favorites__item {
+    padding: 10px 10px 35px;
+  }
+  .book__title, .book_author {
+    font-size: 13px;
+    line-height: 30px;
+  }
+  .book_author {
+    margin-bottom: 10px;
+  }
+  .book_summary {
+    font-size: 14px;
+    max-height: 60%;
+  }
+  .book form {
+    left: 11px;
+  }
+  .footer__info {
+    flex-direction: column;
+  }
+  .info-links, .footer-info__open-hours {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    text-align: center;
+    align-items: center;
+  }
+  .info-links {
+    margin-bottom: 20px;
+  }
+  .footer__developer {
+    padding: 25px 5px;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
+  }
 }
