@@ -97,16 +97,75 @@ section {
 .header-menu__item:hover .header-menu__link {
   color: var(--accent-color);
 }
+.header__profile {
+  position: relative;
+}
 .header__profile-icon {
-  float: inline-end;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   transition: all .3s;
+}
+.profile__drop-menu {
+  position: absolute;
+  right: 0;
+  width: 80px;
+  height: 115px;
+  padding: 5px 10px;
+  color: var(--black-color);
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+  background-color: var(--white-color);
+  z-index: -1;
+  opacity: 0;
+  transition: all .3s;
+}
+.drop-menu__active {
+  z-index: 5;
+  opacity: 1;
+}
+.drop-menu__title{
+  position: relative;
+  font-weight: 700;
+}
+.drop-menu__title::after{
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  position: absolute;
+  bottom: -5px;
+  left: 10px;
+  background-color: var(--accent-color);
+}
+.drop__menu-text {
+  padding-top: 20px;
+}
+.drop__menu-text_1 {
+  margin-bottom: 10px;
+}
+.header__profile-icon>img {
+  width: 100%;
 }
 .header__profile-icon:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  background-color: var(--accent-color);
+  transform: scale(1.1);
 }
 .header__burger {
   display: none;
+}
+.header__burger-overlay {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all .5s;
 }
 /* ----- W E L C O M E ----- */
 .welcome {
@@ -726,16 +785,6 @@ section {
 }
 
 @media (max-width: 1024px) {
-  .header__burger-overlay {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.4);
-    transition: all .5s;
-  }
   .active-overlay {
     right: 0;
   }
@@ -792,20 +841,20 @@ section {
   .header__burger:hover.header__burger span, .header__burger:hover::before, .header__burger:hover::after{
     background-color: var(--accent-color);
   }
-  .menu-open .header-menu__body {
+  .menu-open.header-menu__body {
     right: 0;
   }
-  .menu-open .header__burger::before {
+  .menu-open.header__burger::before {
     transform: rotate(-45deg);
     top: calc(50% - 1.3px);
     right: -4px;
   }
-  .menu-open .header__burger::after {
+  .menu-open.header__burger::after {
     transform: rotate(45deg);
     top: calc(50% - 2px);
     right: -6px;
   }
-  .menu-open .header__burger span {
+  .menu-open.header__burger span {
     width: 0;
   }
   .welcome__title {
