@@ -761,6 +761,104 @@ section {
   color: var(--accent-color);
 }
 
+/* M O D A L S */
+.modals {
+  /* display: none; */
+  position: absolute;
+  top: -100vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  padding: 20px 25px;
+  background-color: var(--white-color);
+  font-family: Inter;
+  font-size: 15px;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 0.3px;
+  transition: all .5s;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.modal-login_open {
+  top: 50%;
+}
+.modals__wrap {
+
+}
+.login-wrap {
+}
+.modals__close-btn {
+}
+.close-btn {
+  position: absolute;
+  top: 13px;
+  right: 7px;
+  background-color: transparent;
+  border: none;
+}
+.close-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+.close-btn__img {
+}
+.modals__title {
+  text-align: center;
+  font-family: Forum;
+  font-size: 20px;
+  line-height: 20px; 
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.modals__form {
+}
+.login-form {
+}
+.modals__form-label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.modals__input {
+  height: 20px;
+  width: 200px;
+  font-size: 14px;
+  border: 1px solid var(--accent-color);
+  margin-bottom: 10px;
+}
+.modals__input:focus {
+  border: 2px solid var(--accent-color);
+}
+.email-input {
+}
+.password-input {
+  margin-bottom: 20px;
+}
+.modals__form .button {
+  margin-bottom: 10px;
+}
+.login-btn {
+}
+.modals__question {
+  text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.modals__suggestion {
+  color: var(--dark-color);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-decoration-line: underline;
+}
+.link-to-register {
+}
+
 @media (max-width: 1420px) {
   .favorites__items {
     grid-template-columns: repeat(2, 45%);

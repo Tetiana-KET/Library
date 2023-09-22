@@ -421,6 +421,27 @@
         </div>
       </div>
     </footer>
+    <section class="modals modal-login">
+      <div class="modals__wrap login-wrap">
+        <button class="modals__close-btn close-btn close-btn_login">
+          <img src="./assets/icons/close_btn.svg" alt="" class="close-btn__img">
+        </button>
+        <h4 class="modals__title">login</h4>
+        <form action="#" class="modals__form login-form">
+          <label class="modals__form-label" for="login-email">E-mail or readers card</label>
+          <input class="modals__input email-input" type="email" name="email" id="login-email" required>
+          <label class="modals__form-label" for="login-password">Password</label>
+          <input class="modals__input password-input" type="password" name="password" id="login-password" minlength="8" required>
+          <button class="button login-btn" type="submit">Log In</button>
+          <p class="modals__question">
+            Don’t have an account?
+            <span class="modals__suggestion"><a href="#" class="link-to-register">Register</a></span>
+          </p>
+        </form>
+      </div>
+
+
+    </section>
   </div>
   <script src="./index.js"></script>
 </body>

@@ -18,6 +18,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	const burger = document.querySelector('.header__burger');
 	const headerProfileIcon = document.querySelector('.header__profile-icon');
 	const dropMenu = document.querySelector('.drop-menu');
+	const modalLogin = document.querySelector('.modal-login');
+	const buttonCloseLogin = document.querySelector('.close-btn_login');
+	const modalRegister = document.querySelector('.modal-register');
+	const buttonCloseRegister = document.querySelector('.close-register');
 
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
@@ -84,8 +88,22 @@ window.addEventListener('DOMContentLoaded', () => {
 			overlay.classList.remove('active-overlay');
 		}
 	}
-	function openLoginModal() {}
-	function openRegisterModal() {}
+	function openLoginModal() {
+		modalLogin.classList.add('modal-login_open');
+		lockBodyScroll();
+	}
+	function closeLoginModal() {
+		modalLogin.classList.remove('modal-login_open');
+		unlockBodyScroll();
+	}
+	function openRegisterModal() {
+		modalRegister.classList.add('modal-register_open');
+		lockBodyScroll();
+	}
+	function closeRegisterModal() {
+		modalRegister.classList.remove('modal-register_open');
+		unlockBodyScroll();
+	}
 
 	//SLIDER
 	let position = 0;
@@ -189,6 +207,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 	prevBtn.addEventListener('click', setPrevSlide);
 	nextBtn.addEventListener('click', setNextSlide);
+	buttonCloseLogin.addEventListener('click', closeLoginModal);
+	buttonCloseRegister.addEventListener('click', closeRegisterModal);
 })
 
 
