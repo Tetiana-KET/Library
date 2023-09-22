@@ -62,6 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	function closeBurgerMenu() {
 		burgerMenu.classList.remove('menu-open');
 		burger.classList.remove('menu-open');
+		
 		overlay.classList.remove('active-overlay');
 		unlockBodyScroll();
 	}

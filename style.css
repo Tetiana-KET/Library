@@ -162,15 +162,18 @@ section {
   display: none;
 }
 .header__burger-overlay {
+  display: none;
   position: fixed;
   top: 0;
-  right: -100%;
+  left: 0;
   width: 100vw;
   height: 100vh;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.4);
-  transition: all .5s;
 }
+  .active-overlay {
+    display: block;
+  }
 /* ----- W E L C O M E ----- */
 .welcome {
   height: 600px;
@@ -763,7 +766,6 @@ section {
 
 /* M O D A L S */
 .modals {
-  /* display: none; */
   position: absolute;
   top: -100vh;
   left: 50%;
@@ -780,13 +782,6 @@ section {
 }
 .modal-login_open {
   top: 50%;
-}
-.modals__wrap {
-
-}
-.login-wrap {
-}
-.modals__close-btn {
 }
 .close-btn {
   position: absolute;
@@ -811,10 +806,6 @@ section {
   text-transform: uppercase;
   margin-bottom: 20px;
 }
-.modals__form {
-}
-.login-form {
-}
 .modals__form-label {
   display: inline-block;
   margin-bottom: 10px;
@@ -829,15 +820,11 @@ section {
 .modals__input:focus {
   border: 2px solid var(--accent-color);
 }
-.email-input {
-}
 .password-input {
   margin-bottom: 20px;
 }
 .modals__form .button {
   margin-bottom: 10px;
-}
-.login-btn {
 }
 .modals__question {
   text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
@@ -855,8 +842,6 @@ section {
   line-height: normal;
   letter-spacing: 1px;
   text-decoration-line: underline;
-}
-.link-to-register {
 }
 
 @media (max-width: 1420px) {
@@ -887,9 +872,6 @@ section {
 }
 
 @media (max-width: 1024px) {
-  .active-overlay {
-    right: 0;
-  }
   .header-menu__body {
     position: fixed;
     top: 0;
