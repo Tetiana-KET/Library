@@ -767,8 +767,9 @@ section {
 /* M O D A L S */
 .modals {
   z-index: 10;
-  position: absolute;
-  top: -100vh;
+  position: fixed;
+  display: none;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
@@ -779,10 +780,7 @@ section {
   line-height: 20px; /* 133.333% */
   letter-spacing: 0.3px;
   transition: all .5s;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-.modal-login_open {
-  top: 50%;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 }
 .close-btn {
   position: absolute;
@@ -841,6 +839,14 @@ section {
   line-height: normal;
   letter-spacing: 1px;
   text-decoration-line: underline;
+}
+.modals__suggestion:hover {
+  cursor: pointer;
+}
+/* MODAL OPEN*/
+.modal-register_open, .modal-login_open {
+  display: block;
+
 }
 
 @media (max-width: 1420px) {

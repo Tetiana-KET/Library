@@ -21,7 +21,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	const modalLogin = document.querySelector('.modal-login');
 	const buttonCloseLogin = document.querySelector('.close-btn_login');
 	const modalRegister = document.querySelector('.modal-register');
-	const buttonCloseRegister = document.querySelector('.close-register');
+	const buttonCloseRegister = document.querySelector('.close-btn_register');
+	const linkToRegister = document.querySelectorAll('.link-to-register');
+	const linkToLogin = document.querySelectorAll('.link-to-login');
+
 
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
@@ -47,6 +50,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		) {
 			closeBurgerMenu();
 			closeDropMenu();
+			closeLoginModal();
+			closeRegisterModal();
 		}
 
 		if (targetItem.closest('.header__profile-icon')) {
@@ -54,7 +59,9 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	function openBurgerMenu() {
+		closeDropMenu();
 		closeLoginModal();
+		closeRegisterModal();
 		burgerMenu.classList.add('menu-open');
 		burger.classList.add('menu-open');
 		overlay.classList.add('active-overlay');
@@ -77,6 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	function openDropMenu() {
 		closeBurgerMenu();
 		closeLoginModal();
+		closeRegisterModal();
 		lockBodyScroll();
 		dropMenu.classList.add('drop-menu__active');
 		overlay.classList.add('active-overlay');
@@ -92,6 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	function openLoginModal() {
+		closeRegisterModal();
 		overlay.classList.add('active-overlay');
 		modalLogin.classList.add('modal-login_open');
 		lockBodyScroll();
@@ -112,6 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		modalRegister.classList.remove('modal-register_open');
 		unlockBodyScroll();
 	}
+
 
 	//SLIDER
 	let position = 0;
@@ -185,7 +195,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//EVENTLISTENER
 	document.addEventListener('click', e => {
-		console.log(e.target);
 		if (e.target.classList.contains('pick-season__input')) {
 			if (!e.target.hasAttribute('checked')) {
 				pickSeasonInput.forEach(input => {
@@ -205,11 +214,13 @@ window.addEventListener('DOMContentLoaded', () => {
 			toggleMenu(e);
 		} 
 
-		if (e.target.closest('.drop__menu-text_login')) {
+		if (e.target.classList.contains('link-to-login')) {
 			closeDropMenu();
+			closeRegisterModal();
 			openLoginModal();
-		} else if (e.target.closest('.drop__menu-text_register')) {
+		} else if (e.target.classList.contains('link-to-register')) {
 			closeDropMenu();
+			closeLoginModal();
 			openRegisterModal();
 		}
 	});
@@ -217,6 +228,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	nextBtn.addEventListener('click', setNextSlide);
 	buttonCloseLogin.addEventListener('click', closeLoginModal);
 	buttonCloseRegister.addEventListener('click', closeRegisterModal);
-})
+});
 
 

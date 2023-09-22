@@ -33,8 +33,8 @@
           <div class="profile__drop-menu drop-menu">
             <h4 class="drop-menu__title">Profile</h4>
             <div class="drop__menu-text">
-              <a href="#" class="drop__menu-text_login">Log In</a>
-              <a href="#" class="drop__menu-text_register">Register</a>
+              <a href="#" class="drop__menu-text_login link-to-login">Log In</a>
+              <a href="#" class="drop__menu-text_register link-to-register">Register</a>
             </div>
           </div>
         </div>
@@ -377,8 +377,8 @@
               <h5 class="card-get__title">Get a reader card</h5>
               <p class="card-get__text">You will be able to see a reader card after logging into account or you can register a new account</p>
               <div class="card-get__button-wrap">
-                <button class="card-get__button button">Sign Up</button>
-                <button class="card-get__button button">Log in</button>
+                <button class="card-get__button button link-to-register">Sign Up</button>
+                <button class="card-get__button button link-to-login">Log in</button>
               </div>
             </div>
           </div>
@@ -424,7 +424,7 @@
     <section class="modals modal-login">
       <div class="modals__wrap login-wrap">
         <button class="modals__close-btn close-btn close-btn_login">
-          <img src="./assets/icons/close_btn.svg" alt="" class="close-btn__img">
+          <img src="./assets/icons/close_btn.svg" alt="close-btn__img" class="close-btn__img">
         </button>
         <h4 class="modals__title">login</h4>
         <form action="#" class="modals__form login-form">
@@ -435,12 +435,40 @@
           <button class="button login-btn" type="submit">Log In</button>
           <p class="modals__question">
             Don’t have an account?
-            <span class="modals__suggestion"><a href="#" class="link-to-register">Register</a></span>
+            <span class="modals__suggestion"><span class="link-to-register">Register</span></span>
           </p>
         </form>
       </div>
 
+    </section>
 
+    <section class="modals modal-register">
+      <div class="modals__wrap register-wrap">
+        <button class="modals__close-btn close-btn close-btn_register">
+          <img src="./assets/icons/close_btn.svg" alt="close-btn__img" class="close-btn__img">
+        </button>
+        <h4 class="modals__title">register</h4>
+        <form action="#" class="modals__form register-form">
+
+          <label class="modals__form-label" for="first-name">First name</label>
+          <input class="modals__input" type="text" name="name" id="first-name" required>
+
+          <label class="modals__form-label" for="last-name">Last name</label>
+          <input class="modals__input" type="text" name="last-name" id="last-name" required>
+
+          <label class="modals__form-label" for="register-email">E-mail or readers card</label>
+          <input class="modals__input email-input" type="email" name="email" id="register-email" required>
+
+          <label class="modals__form-label" for="register-password">Password</label>
+          <input class="modals__input password-input" type="password" name="password" id="register-password" minlength="8" required>
+          
+          <button class="button register-btn" type="submit">Sign Up</button>
+          <p class="modals__question">
+            Already have an account?
+            <span class="modals__suggestion"><span class="link-to-login">Login</span></span>
+          </p>
+        </form>
+      </div>
     </section>
   </div>
   <script src="./index.js"></script>
