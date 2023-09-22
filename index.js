@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 
 		if (targetItem.closest('.header__profile-icon')) {
-			toggleDropMenu();
+			toggleDropMenu(e);
 		}
 	}
 	function openBurgerMenu() {
@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		overlay.classList.remove('active-overlay');
 		unlockBodyScroll();
 	}
-	function toggleDropMenu() {
+	function toggleDropMenu(e) {
 		if (!dropMenu.classList.contains('drop-menu__active')) {
 			openDropMenu();
 		} else {
@@ -87,6 +87,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			overlay.classList.remove('active-overlay');
 		}
 	}
+	function openLoginModal() {}
+	function openRegisterModal() {}
 
 	//SLIDER
 	let position = 0;
@@ -160,6 +162,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//EVENTLISTENER
 	document.addEventListener('click', e => {
+		console.log(e.target);
 		if (e.target.classList.contains('pick-season__input')) {
 			if (!e.target.hasAttribute('checked')) {
 				pickSeasonInput.forEach(input => {
@@ -177,6 +180,14 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		if (e.target.closest('.header')) {
 			toggleMenu(e);
+		} 
+		 
+		if (e.target.closest('.drop__menu-text_login')) {
+			closeDropMenu();
+			openLoginModal();
+		} else if (e.target.closest('.drop__menu-text_register')) {
+			closeDropMenu();
+			openRegisterModal();
 		}
 	});
 	prevBtn.addEventListener('click', setPrevSlide);

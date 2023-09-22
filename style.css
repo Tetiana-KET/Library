@@ -143,8 +143,12 @@ section {
 .drop__menu-text {
   padding-top: 20px;
 }
-.drop__menu-text_1 {
+.drop__menu-text_login, .drop__menu-text_register {
   margin-bottom: 10px;
+  display: inline-block;
+}
+.drop__menu-text_login:hover, .drop__menu-text_register:hover {
+  font-weight: 700;
 }
 .header__profile-icon>img {
   width: 100%;
