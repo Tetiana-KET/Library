@@ -766,6 +766,7 @@ section {
 
 /* M O D A L S */
 .modals {
+  z-index: 10;
   position: absolute;
   top: -100vh;
   left: 50%;
@@ -794,8 +795,6 @@ section {
   cursor: pointer;
   transform: scale(1.1);
   opacity: 0.8;
-}
-.close-btn__img {
 }
 .modals__title {
   text-align: center;

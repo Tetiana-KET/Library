@@ -54,6 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	function openBurgerMenu() {
+		closeLoginModal();
 		burgerMenu.classList.add('menu-open');
 		burger.classList.add('menu-open');
 		overlay.classList.add('active-overlay');
@@ -75,6 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 	function openDropMenu() {
 		closeBurgerMenu();
+		closeLoginModal();
 		lockBodyScroll();
 		dropMenu.classList.add('drop-menu__active');
 		overlay.classList.add('active-overlay');
@@ -90,18 +92,23 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	function openLoginModal() {
+		overlay.classList.add('active-overlay');
 		modalLogin.classList.add('modal-login_open');
 		lockBodyScroll();
 	}
 	function closeLoginModal() {
+		overlay.classList.remove('active-overlay');
 		modalLogin.classList.remove('modal-login_open');
 		unlockBodyScroll();
 	}
 	function openRegisterModal() {
+		closeLoginModal();
+		overlay.classList.add('active-overlay');
 		modalRegister.classList.add('modal-register_open');
 		lockBodyScroll();
 	}
 	function closeRegisterModal() {
+		overlay.classList.remove('active-overlay');
 		modalRegister.classList.remove('modal-register_open');
 		unlockBodyScroll();
 	}
