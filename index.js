@@ -53,12 +53,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		burgerMenu.classList.add('menu-open');
 		burger.classList.add('menu-open');
 		overlay.classList.add('active-overlay');
-
-		if (!body.classList.contains('no-scroll')) {
-			lockBodyScroll();
-		} else {
-			unlockBodyScroll();
-		}
+		lockBodyScroll();
 	}
 	function closeBurgerMenu() {
 		burgerMenu.classList.remove('menu-open');
@@ -75,11 +70,13 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 	function openDropMenu() {
 		closeBurgerMenu();
+		lockBodyScroll();
 		dropMenu.classList.add('drop-menu__active');
 		overlay.classList.add('active-overlay');
 	}
 	function closeDropMenu() {
 		dropMenu.classList.remove('drop-menu__active');
+		unlockBodyScroll();
 		if (
 			overlay.classList.contains('active-overlay') &&
 			!burgerMenu.classList.contains('menu-open')
@@ -181,7 +178,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (e.target.closest('.header')) {
 			toggleMenu(e);
 		} 
-		 
+
 		if (e.target.closest('.drop__menu-text_login')) {
 			closeDropMenu();
 			openLoginModal();
