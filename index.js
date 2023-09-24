@@ -25,7 +25,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const linkToRegister = document.querySelectorAll('.link-to-register');
 	const linkToLogin = document.querySelectorAll('.link-to-login');
 
-
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
 	}
@@ -37,8 +36,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		if (targetItem.closest('.header__burger')) {
 			if (!burger.classList.contains('menu-open')) {
-				openBurgerMenu();
 				closeDropMenu();
+				openBurgerMenu();
 			} else {
 				closeBurgerMenu();
 			}
@@ -70,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	function closeBurgerMenu() {
 		burgerMenu.classList.remove('menu-open');
 		burger.classList.remove('menu-open');
-		
+
 		overlay.classList.remove('active-overlay');
 		unlockBodyScroll();
 	}
@@ -121,7 +120,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		modalRegister.classList.remove('modal-register_open');
 		unlockBodyScroll();
 	}
-
 
 	//SLIDER
 	let position = 0;
@@ -212,7 +210,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		if (e.target.closest('.header')) {
 			toggleMenu(e);
-		} 
+		}
 
 		if (e.target.classList.contains('link-to-login')) {
 			closeDropMenu();

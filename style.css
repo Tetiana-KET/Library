@@ -106,6 +106,20 @@ section {
   height: 30px;
   border-radius: 50%;
   transition: all .3s;
+  background-color: var(--white-color);
+  color: var(--accent-color);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 29px;
+}
+.header__profile-icon>img {
+  width: 100%;
+}
+.header__profile-icon:hover {
+  cursor: pointer;
+  background-color: var(--accent-color);
+  color: var(--black-color);
 }
 .profile__drop-menu {
   position: absolute;
@@ -149,14 +163,6 @@ section {
 }
 .drop__menu-text_login:hover, .drop__menu-text_register:hover {
   font-weight: 700;
-}
-.header__profile-icon>img {
-  width: 100%;
-}
-.header__profile-icon:hover {
-  cursor: pointer;
-  background-color: var(--accent-color);
-  transform: scale(1.1);
 }
 .header__burger {
   display: none;
