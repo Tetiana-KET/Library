@@ -24,6 +24,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	const buttonCloseRegister = document.querySelector('.close-btn_register');
 	const linkToRegister = document.querySelectorAll('.link-to-register');
 	const linkToLogin = document.querySelectorAll('.link-to-login');
+	checkAuthorization();
+
 
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
@@ -120,6 +122,56 @@ window.addEventListener('DOMContentLoaded', () => {
 		modalRegister.classList.remove('modal-register_open');
 		unlockBodyScroll();
 	}
+
+	//REGISTRATION
+
+	const registerForm = document.querySelector('.register-form');
+	const loginForm = document.querySelector('.login-form');
+	const loginEmail = document.getElementById('login-email').value;
+	const loginPassword = document.getElementById('login-password').value;
+	
+	function registerNewUser () {
+		localStorage.clear();
+
+		const registerEmail = document.getElementById('register-email').value;
+		const registerPassword = document.getElementById('register-password').value;
+		const userFirstName = document.getElementById('first-name').value;
+		const userLastName = document.getElementById('last-name').value;
+		const cardNumber = Math.ceil(Math.random()*10000000000).toString(16).toUpperCase();
+		
+		localStorage.setItem('userFirstName', userFirstName);
+		localStorage.setItem('userLastName', userLastName);
+		localStorage.setItem('registerPassword', registerPassword);
+		localStorage.setItem('registerEmail', registerEmail);
+		localStorage.setItem('cardNumber', cardNumber);
+		localStorage.setItem('visitCounter', 1);
+		localStorage.setItem('isAuthorized', true);
+		localStorage.setItem('libraryCardOwn', false);
+
+		setUserInitials();
+		closeRegisterModal();
+	}
+
+	function authorizeUser () {}
+	
+	function checkAuthorization () {
+		if (localStorage.isAuthorized) {
+			setUserInitials();
+		}
+	}
+
+	function setUserInitials() {
+		const initials = (localStorage.userFirstName[0] + localStorage.userLastName[0]).toUpperCase();
+		headerProfileIcon.classList.add('authorized-user');
+		headerProfileIcon.textContent = `${initials}`;
+	}
+	
+	
+	registerForm.addEventListener('submit', e => {
+		e.preventDefault();
+		localStorage.clear();
+		registerNewUser();
+	});
 
 	//SLIDER
 	let position = 0;
