@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			logo.textContent = 'Brooklyn Public Library';
 		}
 	};
-
 	//BURGER	//DROP MENU
 	const body = document.body;
 	const header = document.querySelector('.header');
@@ -148,22 +147,34 @@ window.addEventListener('DOMContentLoaded', () => {
 		localStorage.setItem('isAuthorized', true);
 		localStorage.setItem('libraryCardOwn', false);
 
+
 		setUserInitials();
 		closeRegisterModal();
 	}
 
 	function authorizeUser () {}
-	
+
 	function checkAuthorization () {
 		if (localStorage.isAuthorized) {
+			body.classList.add('authorized-user');
 			setUserInitials();
+			changeCardsSectionContent();
 		}
 	}
 
 	function setUserInitials() {
 		const initials = (localStorage.userFirstName[0] + localStorage.userLastName[0]).toUpperCase();
-		headerProfileIcon.classList.add('authorized-user');
 		headerProfileIcon.textContent = `${initials}`;
+	}
+	function changeCardsSectionContent() {
+		const cardTitle = document.querySelector('.card-find__title');
+		const visitProfile= document.querySelector('.card-get__title');
+		const description = document.querySelector('.card-get__text');
+
+		cardTitle.textContent = 'Your Library card';
+		visitProfile.textContent = 'Visit your profile';
+		description.textContent =
+			'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
 	}
 	
 	
