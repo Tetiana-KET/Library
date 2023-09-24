@@ -1128,6 +1128,17 @@ section {
     line-height: 35px;
     letter-spacing: 1px;
   }
+    .pick-season__label {
+    font-size: 15px;
+  }
+  .pick-season__label:not(:last-child) {
+    margin-right: 3%;
+  }
+  .pick-season__label::before {
+    width: 13px;
+    height: 13px;
+    margin-right: 5%; /* 20/550 */
+  }
 }
 
 @media (max-width: 550px) {
@@ -1145,17 +1156,6 @@ section {
   .welcome__title {
     width: 100%;
     font-size: 35px;
-  }
-  .pick-season__label {
-    font-size: 15px;
-  }
-  .pick-season__label:not(:last-child) {
-    margin-right: 3%;
-  }
-  .pick-season__label::before {
-    width: 13px;
-    height: 13px;
-    margin-right: 5%; /* 20/550 */
   }
   .favorites__item {
     padding: 15px 20px 40px 20px;
