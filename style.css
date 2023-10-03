@@ -671,6 +671,10 @@ section {
   letter-spacing: 0.6px;
   outline: none;
 }
+.find-form input:disabled {
+  color: var(--accent-color);
+  background-color: var(--white-color);
+}
 .find-form__title {
   font-family: "Forum";
   font-size: 30px;

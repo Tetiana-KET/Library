@@ -170,12 +170,19 @@ window.addEventListener('DOMContentLoaded', () => {
 		const cardTitle = document.querySelector('.card-find__title');
 		const visitProfile= document.querySelector('.card-get__title');
 		const description = document.querySelector('.card-get__text');
+		const readerCardName = document.querySelector('.reader-card__name');
+		const readerCardNumber = document.querySelector('.reader-card__number');
 
 		cardTitle.textContent = 'Your Library card';
+		readerCardName.value = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+		readerCardName.setAttribute('disabled', true);
+		readerCardNumber.value = localStorage.getItem('cardNumber');
+		readerCardNumber.setAttribute('disabled', true);
 		visitProfile.textContent = 'Visit your profile';
 		description.textContent =
 			'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
 	}
+
 	
 	
 	registerForm.addEventListener('submit', e => {
