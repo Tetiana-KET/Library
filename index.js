@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	const loginForm = document.querySelector('.login-form');
 	const buttonCheckCard = document.querySelector('.button_check-card');
 	let isAuthorized = JSON.parse(localStorage.getItem('isAuthorized'));
+	const buyBtns = document.querySelectorAll('.book__button');
 
 	checkAuthorization();
 
@@ -157,6 +158,11 @@ window.addEventListener('DOMContentLoaded', () => {
 	function setUserInitials () {
 		const initials = (localStorage.userFirstName[0] + localStorage.userLastName[0]).toUpperCase();
 		headerProfileIcon.textContent = `${initials}`;
+		headerProfileIcon.setAttribute(
+			'title',
+			`${localStorage.userFirstName} ${localStorage.userLastName}`
+		);
+
 	}
 	function changeCardsSectionContent () {
 		const cardTitle = document.querySelector('.card-find__title');
@@ -183,30 +189,38 @@ window.addEventListener('DOMContentLoaded', () => {
 	  loginMyProfile.textContent = 'My profile';
 		document.querySelector('.drop-menu__title').textContent = localStorage.getItem('cardNumber');
 		document.querySelector('.drop-menu__title').style.fontSize = '12px';
-	};
+	}
 	function checkCardNumber (e) {
 		e.preventDefault();
 
 		const readerCardNameEntered = document.querySelector('.reader-card__name').value.toLowerCase();
 		const readerCardNumberEntered = document.querySelector('.reader-card__number').value.toLowerCase();
 		
-		const cardNumber = localStorage.getItem('cardNumber');
+		const cardNumber = localStorage.getItem('cardNumber').toLowerCase();
 		const userName = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`.toLowerCase();
 		const userNameReverse = `${localStorage.getItem('userLastName')} ${localStorage.getItem('userFirstName')}`.toLowerCase();
-		const statistics = document.querySelector('.library-cards__profile-statistic ');
+		const statistics = document.querySelector('.library-cards__profile-statistic');
 
 		if (
 			cardNumber === readerCardNumberEntered &&
 			(readerCardNameEntered === userName ||
 			 readerCardNameEntered === userNameReverse)
 		) {
+			
 			buttonCheckCard.classList.add('show-statistic');
 			statistics.classList.add('show-statistic');
 			updateStatistic();
 			setTimeout(()=> {
 				buttonCheckCard.classList.remove('show-statistic');
 				statistics.classList.remove('show-statistic');
-			}, 1000)
+			}, 10000)
+		}
+	}
+	function buyBook (e) {
+		e.preventDefault();
+
+		if (!isAuthorized) {
+			openLoginModal();
 		}
 	}
 
@@ -359,6 +373,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 	//	CHECK CARD
 	buttonCheckCard.addEventListener('click', checkCardNumber);
+	//BUY BOOK
+	buyBtns.forEach((btn) => {
+		btn.addEventListener('click', buyBook);
+	}); 
 });
 
 

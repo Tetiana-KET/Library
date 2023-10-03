@@ -177,12 +177,12 @@ section {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 3;
   background-color: rgba(0, 0, 0, 0.4);
 }
-  .active-overlay {
-    display: block;
-  }
+.active-overlay {
+  display: block;
+}
 /* ----- W E L C O M E ----- */
 .welcome {
   height: 600px;
@@ -963,7 +963,7 @@ section {
     text-align: center;
   }
   .header__profile-icon {
-    z-index: 3;
+    z-index: 5;
   }
   .header__burger {
     padding: 0;
