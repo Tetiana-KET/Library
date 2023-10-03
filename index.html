@@ -26,9 +26,19 @@
             </ul>
           </div>
         </nav>
-        <div class="header__profile-icon">
-          <img src="./assets/icons/icon_profile.svg" alt="rofile-icon">
+        <div class="header__profile profile">
+          <div class="header__profile-icon">
+            <img src="./assets/icons/icon_profile.svg" alt="profile-icon">
+          </div>
+          <div class="profile__drop-menu drop-menu">
+            <h4 class="drop-menu__title">Profile</h4>
+            <div class="drop__menu-text">
+              <a href="#" class="drop__menu-text_login link-to-login">Log In</a>
+              <a href="#" class="drop__menu-text_register link-to-register">Register</a>
+            </div>
+          </div>
         </div>
+       
         <button class="header__burger" type="button">
           <span></span>
         </button>
@@ -127,7 +137,7 @@
                 <h5 class="book_author">By Clive Irving</h5>
                 <p class="book_summary">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
                 <form action="#">
-                  <button class="book__button button own-button">Buy</button>
+                  <button class="book__button button">Buy</button>
                 </form>
                 <div class="book__cover">
                   <img src="./assets/images/favourites/book4.png" alt="book-cover">
@@ -352,23 +362,54 @@
           <div class="library-cards__wrap">
             <div class="library-cards__find card-find">
               <h3 class="card-find__title">Find your Library card</h3>
-              <form action="/" class="card-find__form find-form">
+              <form action="/" class="card-find__form find-form reader-card">
                 <div class="find-form__wrap">
                   <h4 class="find-form__title">Brooklyn Public Library</h4>
-                  <input type="text" placeholder="Reader's name">
-                  <input type="number" placeholder="Card number">
+                  <input class="reader-card__name" type="text" placeholder="Reader's name">
+                  <input class="reader-card__number" type="text" placeholder="Card number">
                 </div>
                 <div class="find-form__btn-wrap">
-                  <button class="find-form__btn button" type="submit">Check the card</button>
+                  <button class="find-form__btn button button_check-card" type="button">Check the card</button>
+                </div>
+                <div class="library-cards__profile-statistic profile-statistic">
+                  <div class="profile-statistic__wrap">
+                    <div class="profile-statistic__visits visits">
+                      <h5 class="visits__title">Visits</h5>
+                      <svg class="visits__img" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                      </svg>
+                      <p class="visits__count">23</p>
+                    </div>
+
+                    <div class="profile-statistic__bonus bonus">
+                      <h5 class="bonus__title">Bonuses</h5>
+                      <svg class="bonus__img" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                      </svg>
+                      <p class="bonus__count">0</p>
+                    </div>
+
+                    <div class="profile-statistic__books own-books">
+                      <h5 class="own-books__title">Books</h5>
+                      <svg class="own-books__img" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <rect width="20" height="21" fill="#BB945F"/>
+                        <rect x="2" width="1" height="19" fill="#826844"/>
+                        <rect x="1" width="1" height="21" fill="white"/>
+                      </svg>
+                      <p class="own-books__count">0</p>
+                    </div>
+                  </div>
                 </div>
               </form>
+
             </div>
             <div class="library-cards__get card-get">
               <h5 class="card-get__title">Get a reader card</h5>
               <p class="card-get__text">You will be able to see a reader card after logging into account or you can register a new account</p>
               <div class="card-get__button-wrap">
-                <button class="card-get__button button">Sign Up</button>
-                <button class="card-get__button button">Log in</button>
+                <button class="card-get__button button link-to-register" type="submit">Sign Up</button>
+                <button class="card-get__button button link-to-login" type="submit">Log In</button>
+                <button class="card-get__button button link-to-profile" type="submit">Profile</button>
               </div>
             </div>
           </div>
@@ -411,6 +452,55 @@
         </div>
       </div>
     </footer>
+    <section class="modals modal-login">
+      <div class="modals__wrap login-wrap">
+        <button class="modals__close-btn close-btn close-btn_login">
+          <img src="./assets/icons/close_btn.svg" alt="close-btn__img" class="close-btn__img">
+        </button>
+        <h4 class="modals__title">login</h4>
+        <form action="#" class="modals__form login-form">
+          <label class="modals__form-label" for="login-email">E-mail or readers card</label>
+          <input class="modals__input email-input" type="text" name="email" id="login-email" required>
+          <label class="modals__form-label" for="login-password">Password</label>
+          <input class="modals__input password-input" type="password" name="password" id="login-password" minlength="8" required>
+          <button class="button login-btn" type="submit">Log In</button>
+          <p class="modals__question">
+            Don’t have an account?
+            <span class="modals__suggestion"><span class="link-to-register">Register</span></span>
+          </p>
+        </form>
+      </div>
+
+    </section>
+
+    <section class="modals modal-register">
+      <div class="modals__wrap register-wrap">
+        <button class="modals__close-btn close-btn close-btn_register">
+          <img src="./assets/icons/close_btn.svg" alt="close-btn__img" class="close-btn__img">
+        </button>
+        <h4 class="modals__title">register</h4>
+        <form action="#" class="modals__form register-form">
+
+          <label class="modals__form-label" for="first-name">First name</label>
+          <input class="modals__input" type="text" name="name" id="first-name" required>
+
+          <label class="modals__form-label" for="last-name">Last name</label>
+          <input class="modals__input" type="text" name="last-name" id="last-name" required>
+
+          <label class="modals__form-label" for="register-email">E-mail or readers card</label>
+          <input class="modals__input email-input" type="email" name="email" id="register-email" required>
+
+          <label class="modals__form-label" for="register-password">Password</label>
+          <input class="modals__input password-input" type="password" name="password" id="register-password" minlength="8" required>
+          
+          <button class="button register-btn" type="submit">Sign Up</button>
+          <p class="modals__question">
+            Already have an account?
+            <span class="modals__suggestion"><span class="link-to-login">Login</span></span>
+          </p>
+        </form>
+      </div>
+    </section>
   </div>
   <script src="./index.js"></script>
 </body>
