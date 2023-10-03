@@ -9,8 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			logo.textContent = 'Brooklyn Public Library';
 		}
 	};
-
-	//BURGER	//DROP MENU
 	const body = document.body;
 	const header = document.querySelector('.header');
 	const overlay = document.querySelector('.header__burger-overlay');
@@ -22,9 +20,15 @@ window.addEventListener('DOMContentLoaded', () => {
 	const buttonCloseLogin = document.querySelector('.close-btn_login');
 	const modalRegister = document.querySelector('.modal-register');
 	const buttonCloseRegister = document.querySelector('.close-btn_register');
-	const linkToRegister = document.querySelectorAll('.link-to-register');
-	const linkToLogin = document.querySelectorAll('.link-to-login');
+	const registerLogout = document.querySelector('.link-to-register');
+	const loginMyProfile = document.querySelector('.link-to-login');
+	const buttonLogin = document.querySelector('.button login-btn');
+	const registerForm = document.querySelector('.register-form');
+	const loginForm = document.querySelector('.login-form');
+	const buttonCheckCard = document.querySelector('.button_check-card');
+	let isAuthorized = JSON.parse(localStorage.getItem('isAuthorized'));
 
+	checkAuthorization();
 
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
@@ -37,8 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		if (targetItem.closest('.header__burger')) {
 			if (!burger.classList.contains('menu-open')) {
-				openBurgerMenu();
 				closeDropMenu();
+				openBurgerMenu();
 			} else {
 				closeBurgerMenu();
 			}
@@ -70,7 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	function closeBurgerMenu() {
 		burgerMenu.classList.remove('menu-open');
 		burger.classList.remove('menu-open');
-		
+
 		overlay.classList.remove('active-overlay');
 		unlockBodyScroll();
 	}
@@ -121,7 +125,90 @@ window.addEventListener('DOMContentLoaded', () => {
 		modalRegister.classList.remove('modal-register_open');
 		unlockBodyScroll();
 	}
+	function registerNewUser () {
+		localStorage.clear();
 
+		const registerEmail = document.getElementById('register-email').value;
+		const registerPassword = document.getElementById('register-password').value;
+		const userFirstName = document.getElementById('first-name').value;
+		const userLastName = document.getElementById('last-name').value;
+		const cardNumber = Math.ceil(Math.random() * 10000000000000).toString(16).toUpperCase().slice(0, 9);
+		
+		localStorage.setItem('userFirstName', userFirstName);
+		localStorage.setItem('userLastName', userLastName);
+		localStorage.setItem('registerPassword', registerPassword);
+		localStorage.setItem('registerEmail', registerEmail);
+		localStorage.setItem('cardNumber', cardNumber);
+		localStorage.setItem('visitCounter', 1);
+		localStorage.setItem('isAuthorized', true);
+		localStorage.setItem('libraryCardOwn', false);
+
+		closeRegisterModal();
+		location.reload();
+	}
+	function checkAuthorization () {
+		if (isAuthorized) {
+			body.classList.add('authorized-user');
+			setUserInitials();
+			changeCardsSectionContent();
+			changeDropMenuContent();
+		}
+	}
+	function setUserInitials () {
+		const initials = (localStorage.userFirstName[0] + localStorage.userLastName[0]).toUpperCase();
+		headerProfileIcon.textContent = `${initials}`;
+	}
+	function changeCardsSectionContent () {
+		const cardTitle = document.querySelector('.card-find__title');
+		const visitProfile= document.querySelector('.card-get__title');
+		const description = document.querySelector('.card-get__text');
+		const readerCardName = document.querySelector('.reader-card__name');
+		const readerCardNumber = document.querySelector('.reader-card__number');
+		
+		cardTitle.textContent = 'Your Library card';
+		readerCardName.value = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+		readerCardName.setAttribute('disabled', true);
+		readerCardNumber.value = localStorage.getItem('cardNumber');
+		readerCardNumber.setAttribute('disabled', true);
+		visitProfile.textContent = 'Visit your profile';
+		description.textContent = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+		updateStatistic();
+	}
+	function updateStatistic () {
+		const visitCounts = document.querySelector('.visits__count');
+		visitCounts.textContent = localStorage.getItem('visitCounter');
+	}
+	function changeDropMenuContent () {
+		registerLogout.textContent = 'Log Out';
+	  loginMyProfile.textContent = 'My profile';
+		document.querySelector('.drop-menu__title').textContent = localStorage.getItem('cardNumber');
+		document.querySelector('.drop-menu__title').style.fontSize = '12px';
+	};
+	function checkCardNumber (e) {
+		e.preventDefault();
+
+		const readerCardNameEntered = document.querySelector('.reader-card__name').value.toLowerCase();
+		const readerCardNumberEntered = document.querySelector('.reader-card__number').value.toLowerCase();
+		
+		const cardNumber = localStorage.getItem('cardNumber');
+		const userName = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`.toLowerCase();
+		const userNameReverse = `${localStorage.getItem('userLastName')} ${localStorage.getItem('userFirstName')}`.toLowerCase();
+		const statistics = document.querySelector('.library-cards__profile-statistic ');
+
+		if (
+			cardNumber === readerCardNumberEntered &&
+			(readerCardNameEntered === userName ||
+			 readerCardNameEntered === userNameReverse)
+		) {
+			buttonCheckCard.classList.add('show-statistic');
+			statistics.classList.add('show-statistic');
+			updateStatistic();
+			setTimeout(()=> {
+				buttonCheckCard.classList.remove('show-statistic');
+				statistics.classList.remove('show-statistic');
+			}, 1000)
+		}
+	}
 
 	//SLIDER
 	let position = 0;
@@ -177,7 +264,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		setActiveDot(dotIndex);
 		checkButtons();
 	}
-
 	paginationItems.forEach((dot, i) => {
 		dot.addEventListener('click', () => {
 			dotIndex = i;
@@ -212,22 +298,67 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		if (e.target.closest('.header')) {
 			toggleMenu(e);
-		} 
+		}
 
-		if (e.target.classList.contains('link-to-login')) {
+		if (
+			e.target.classList.contains('link-to-login') &&
+			(e.target.textContent === 'Log In' || e.target.textContent === 'Login')
+		) {
 			closeDropMenu();
 			closeRegisterModal();
 			openLoginModal();
-		} else if (e.target.classList.contains('link-to-register')) {
+		} else if (
+			e.target.classList.contains('link-to-register') &&
+			(e.target.textContent === 'Register' || e.target.textContent === 'Sign Up')
+		) {
 			closeDropMenu();
 			closeLoginModal();
 			openRegisterModal();
+		} else if (
+			e.target.classList.contains('link-to-register') &&
+			e.target.textContent === 'Log Out'
+		) {
+			closeLoginModal();
+			localStorage.setItem('isAuthorized', false);
+			body.classList.remove('authorized-user');
+			closeDropMenu();
+			location.reload();
 		}
 	});
 	prevBtn.addEventListener('click', setPrevSlide);
 	nextBtn.addEventListener('click', setNextSlide);
 	buttonCloseLogin.addEventListener('click', closeLoginModal);
 	buttonCloseRegister.addEventListener('click', closeRegisterModal);
+	//REGISTRATION
+	registerForm.addEventListener('submit', e => {
+		e.preventDefault();
+		registerNewUser();
+	});
+	//LOGIN
+	loginForm.addEventListener('submit', e => {
+		e.preventDefault();
+
+		const enteredPassword = document.getElementById('login-password').value;
+		const enteredLogin = document.getElementById('login-email').value;
+
+		const savedPassword = localStorage.getItem('registerPassword');
+		const savedEmail = localStorage.getItem('registerEmail');
+		const cardNumber = localStorage.getItem('cardNumber');
+
+		const visitCounter = localStorage.getItem('visitCounter');
+		if (
+			(enteredLogin === savedEmail || enteredLogin === cardNumber) &&
+			savedPassword === enteredPassword
+		) {
+			localStorage.setItem('visitCounter', +visitCounter + 1);
+			localStorage.setItem('isAuthorized', true);
+			closeLoginModal();
+
+			location.reload();
+		}
+	});
+	//	CHECK CARD
+	buttonCheckCard.addEventListener('click', checkCardNumber);
 });
 
 
