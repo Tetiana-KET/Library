@@ -22,12 +22,14 @@ window.addEventListener('DOMContentLoaded', () => {
 	const buttonCloseRegister = document.querySelector('.close-btn_register');
 	const registerLogout = document.querySelector('.link-to-register');
 	const loginMyProfile = document.querySelector('.link-to-login');
-	const buttonLogin = document.querySelector('.button login-btn');
 	const registerForm = document.querySelector('.register-form');
 	const loginForm = document.querySelector('.login-form');
 	const buttonCheckCard = document.querySelector('.button_check-card');
+	const profile = document.querySelector('.modal-profile');
+	const buttonCloseProfile = document.querySelector('.close-btn_profile');
 	let isAuthorized = JSON.parse(localStorage.getItem('isAuthorized'));
 	const buyBtns = document.querySelectorAll('.book__button');
+	const copyBtn = document.querySelector('.user-card__copy-btn');
 
 	checkAuthorization();
 
@@ -57,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			closeDropMenu();
 			closeLoginModal();
 			closeRegisterModal();
+			closeProfile();
 		}
 
 		if (targetItem.closest('.header__profile-icon')) {
@@ -75,7 +78,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	function closeBurgerMenu() {
 		burgerMenu.classList.remove('menu-open');
 		burger.classList.remove('menu-open');
-
 		overlay.classList.remove('active-overlay');
 		unlockBodyScroll();
 	}
@@ -151,7 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (isAuthorized) {
 			body.classList.add('authorized-user');
 			setUserInitials();
-			changeCardsSectionContent();
+			changeCardsSectionAndProfileContent();
 			changeDropMenuContent();
 		}
 	}
@@ -162,27 +164,37 @@ window.addEventListener('DOMContentLoaded', () => {
 			'title',
 			`${localStorage.userFirstName} ${localStorage.userLastName}`
 		);
-
+		const profileAvatar = document.querySelector('.sidebar__avatar p');
+		profileAvatar.textContent = `${initials}`;
 	}
-	function changeCardsSectionContent () {
+	function changeCardsSectionAndProfileContent () {
 		const cardTitle = document.querySelector('.card-find__title');
 		const visitProfile= document.querySelector('.card-get__title');
 		const description = document.querySelector('.card-get__text');
 		const readerCardName = document.querySelector('.reader-card__name');
 		const readerCardNumber = document.querySelector('.reader-card__number');
-		
+		const sidebarUserName = document.querySelector('.sidebar__user-name');
+		const profileUserCard = document.querySelector('.user-card__number');
+
+		const userName = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+		const userCard = localStorage.getItem('cardNumber');
+
 		cardTitle.textContent = 'Your Library card';
-		readerCardName.value = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+		readerCardName.value = userName;
+		sidebarUserName.textContent = userName;
 		readerCardName.setAttribute('disabled', true);
-		readerCardNumber.value = localStorage.getItem('cardNumber');
+		readerCardNumber.value = userCard;
+		profileUserCard.textContent = userCard;
 		readerCardNumber.setAttribute('disabled', true);
 		visitProfile.textContent = 'Visit your profile';
 		description.textContent = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
 		updateStatistic();
 	}
 	function updateStatistic () {
-		const visitCounts = document.querySelector('.visits__count');
-		visitCounts.textContent = localStorage.getItem('visitCounter');
+		const visitCounts = document.querySelectorAll('.visits__count');
+		visitCounts.forEach((counter) => {
+			counter.textContent = localStorage.getItem('visitCounter');
+		});
 	}
 	function changeDropMenuContent () {
 		registerLogout.textContent = 'Log Out';
@@ -222,6 +234,26 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (!isAuthorized) {
 			openLoginModal();
 		}
+	}
+	function openProfile () {
+		profile.classList.add('modal-profile_open');
+		overlay.classList.add('active-overlay');
+		lockBodyScroll();
+	}
+	function closeProfile () {
+		profile.classList.remove('modal-profile_open');
+		overlay.classList.remove('active-overlay');
+		unlockBodyScroll();
+	}
+	function copyToClipboard (e) {
+		e.preventDefault();
+
+		const input = document.createElement('input');
+		const cardNum = document.querySelector('.user-card__number');
+		input.value = cardNum.textContent;
+		input.select();
+		document.execCommand('copy');
+		navigator.clipboard.writeText(input.value);	 
 	}
 
 	//SLIDER
@@ -322,8 +354,15 @@ window.addEventListener('DOMContentLoaded', () => {
 			closeRegisterModal();
 			openLoginModal();
 		} else if (
+			(e.target.classList.contains('link-to-login') && e.target.textContent === 'My profile') || 
+			 e.target.classList.contains('link-to-profile')
+		  ) {
+			closeDropMenu();
+			openProfile();
+		} else if (
 			e.target.classList.contains('link-to-register') &&
-			(e.target.textContent === 'Register' || e.target.textContent === 'Sign Up')
+			(e.target.textContent === 'Register' ||
+				e.target.textContent === 'Sign Up')
 		) {
 			closeDropMenu();
 			closeLoginModal();
@@ -343,6 +382,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	nextBtn.addEventListener('click', setNextSlide);
 	buttonCloseLogin.addEventListener('click', closeLoginModal);
 	buttonCloseRegister.addEventListener('click', closeRegisterModal);
+	buttonCloseProfile.addEventListener('click', closeProfile);
 	//REGISTRATION
 	registerForm.addEventListener('submit', e => {
 		e.preventDefault();
@@ -377,6 +417,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	buyBtns.forEach((btn) => {
 		btn.addEventListener('click', buyBook);
 	}); 
+	//COPY CARD NUMBER
+	copyBtn.addEventListener('click', copyToClipboard);
 });
 
 

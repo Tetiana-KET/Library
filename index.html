@@ -472,7 +472,6 @@
       </div>
 
     </section>
-
     <section class="modals modal-register">
       <div class="modals__wrap register-wrap">
         <button class="modals__close-btn close-btn close-btn_register">
@@ -499,6 +498,69 @@
             <span class="modals__suggestion"><span class="link-to-login">Login</span></span>
           </p>
         </form>
+      </div>
+    </section>
+    <section class="modals modal-profile">
+      <div class="modals__wrap profile-wrap">
+        <button class="modals__close-btn close-btn close-btn_profile">
+          <img src="./assets/icons/close_btn.svg" alt="close-btn__img" class="close-btn__img">
+        </button>
+        <aside class="profile__sidebar">
+          <div class="sidebar__wrap">
+            <div class="sidebar__avatar">
+              <p>JD</p>
+            </div>
+            <div class="sidebar__user-name">John Doe</div>
+          </div>
+        </aside>
+        <div class="profile__content">
+          <div class="profile__content-wrap">
+            <h3 class="profile__title">My profile</h3>
+            <div class="profile__profile-statistic">
+              <div class="profile-statistic__item visits">
+                <h5 class="visits__title">Visits</h5>
+                <svg class="visits__img" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                </svg>
+                <p class="visits__count">23</p>
+              </div>
+
+              <div class="profile-statistic__item bonus">
+                <h5 class="bonus__title">Bonuses</h5>
+                <svg class="bonus__img" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                  <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                </svg>
+                <p class="bonus__count">0</p>
+              </div>
+
+              <div class="profile-statistic__item own-books">
+                <h5 class="own-books__title">Books</h5>
+                <svg class="own-books__img" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                  <rect width="20" height="21" fill="#BB945F"/>
+                  <rect x="2" width="1" height="19" fill="#826844"/>
+                  <rect x="1" width="1" height="21" fill="white"/>
+                </svg>
+                <p class="own-books__count">0</p>
+              </div>
+            </div>
+            <p class="profile__rented-books">Rented books</p>
+            <ul class="profile__books-list">
+              <li class="book-list__item"></li>
+              <li class="book-list__item"></li>
+            </ul>
+            <p class="profile__user-card user-card">
+              <span class="user-card__title">Card number</span>
+              <span class="user-card__number">F00234030</span>
+              <button class="user-card__copy-btn" type="button">
+                <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+                  <rect x="2.46826" y="0.25" width="10.5917" height="9.5" rx="0.75" stroke="black" stroke-width="0.5"/>
+                  <rect x="0.25" y="2.25" width="10.5917" height="9.5" rx="0.75" fill="white" stroke="black" stroke-width="0.5"/>
+                </svg>
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   </div>
