@@ -10,7 +10,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	};
 	const body = document.body;
-	const header = document.querySelector('.header');
 	const overlay = document.querySelector('.header__burger-overlay');
 	const burgerMenu = document.querySelector('.header-menu__body');
 	const burger = document.querySelector('.header__burger');
@@ -27,11 +26,25 @@ window.addEventListener('DOMContentLoaded', () => {
 	const buttonCheckCard = document.querySelector('.button_check-card');
 	const profile = document.querySelector('.modal-profile');
 	const buttonCloseProfile = document.querySelector('.close-btn_profile');
-	let isAuthorized = JSON.parse(localStorage.getItem('isAuthorized'));
 	const buyBtns = document.querySelectorAll('.book__button');
 	const copyBtn = document.querySelector('.user-card__copy-btn');
+	const modalBuyCard = document.querySelector('.modal__buy-card');
+	const buyCardForm = document.querySelector('.buy-card__form');
+	const buyCardFormBtn = document.querySelector('.buy-form__btn');
+	const booksCollection = document.querySelectorAll('.book');
+	const ownBooksCount = document.querySelectorAll('.own-books__count');
+	const bookTitles = document.querySelectorAll('.book__title');
+	const bookAuthors = document.querySelectorAll('.book_author');
+	const profileBooksList = document.querySelector('.profile__books-list');
+
+	let boughtBooksList = JSON.parse(localStorage.getItem('boughtBooksList')) || [];
+	let btnsArray = JSON.parse(localStorage.getItem('btnsToDisable')) || [];
+
+	let isAuthorized = JSON.parse(localStorage.getItem('isAuthorized'));
+	let hasLibraryCard = JSON.parse(localStorage.getItem('hasLibraryCard'));
 
 	checkAuthorization();
+	setBoughtBookAfterReload();
 
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
@@ -60,6 +73,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			closeLoginModal();
 			closeRegisterModal();
 			closeProfile();
+			closeBuyLibraryCardModal();
 		}
 
 		if (targetItem.closest('.header__profile-icon')) {
@@ -144,7 +158,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		localStorage.setItem('cardNumber', cardNumber);
 		localStorage.setItem('visitCounter', 1);
 		localStorage.setItem('isAuthorized', true);
-		localStorage.setItem('libraryCardOwn', false);
+		localStorage.setItem('hasLibraryCard', false);
 
 		closeRegisterModal();
 		location.reload();
@@ -228,13 +242,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			}, 10000)
 		}
 	}
-	function buyBook (e) {
-		e.preventDefault();
-
-		if (!isAuthorized) {
-			openLoginModal();
-		}
-	}
 	function openProfile () {
 		profile.classList.add('modal-profile_open');
 		overlay.classList.add('active-overlay');
@@ -255,7 +262,36 @@ window.addEventListener('DOMContentLoaded', () => {
 		document.execCommand('copy');
 		navigator.clipboard.writeText(input.value);	 
 	}
+	function openBuyLibraryCardModal () {
+		overlay.classList.add('active-overlay');
+		lockBodyScroll();
+		modalBuyCard.classList.add('buy-card_open');
+	}
+	function closeBuyLibraryCardModal() {
+		overlay.classList.remove('active-overlay');
+		unlockBodyScroll();
+		modalBuyCard.classList.remove('buy-card_open');
+	}
+	function buyLibraryCard (e) {
+		e.preventDefault();
 
+		localStorage.setItem('hasLibraryCard', true);
+		closeBuyLibraryCardModal();
+		location.reload();
+	}
+	function validateForm () {
+		if (
+			!buyCardForm.checkValidity() &&
+			!buyCardFormBtn.classList.contains('disabled')
+		) {
+			buyCardFormBtn.classList.add('disabled');
+		} else if (
+			buyCardForm.checkValidity() &&
+			buyCardFormBtn.classList.contains('disabled')
+		) {
+			buyCardFormBtn.classList.remove('disabled');
+		}
+	};
 	//SLIDER
 	let position = 0;
 	let dotIndex = 0;
@@ -266,7 +302,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const paginationItems = Array.from(
 		document.querySelectorAll('.pagination__item')
 	);
-
 	function setActiveDot(dotIndex) {
 		paginationItems.forEach(dot => {
 			dot.classList.remove('dot__active');
@@ -316,7 +351,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			moveSlider();
 		});
 	});
-
 	//FAVORITES "SLIDER"
 	const pickSeasonInput = Array.from(
 		document.querySelectorAll('.pick-season__input')
@@ -324,7 +358,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const favoriteSeasons = Array.from(
 		document.querySelectorAll('.favorites__items')
 	);
-
 	//EVENTLISTENER
 	document.addEventListener('click', e => {
 		if (e.target.classList.contains('pick-season__input')) {
@@ -414,11 +447,72 @@ window.addEventListener('DOMContentLoaded', () => {
 	//	CHECK CARD
 	buttonCheckCard.addEventListener('click', checkCardNumber);
 	//BUY BOOK
-	buyBtns.forEach((btn) => {
-		btn.addEventListener('click', buyBook);
+	function setBoughtBookAfterReload () {
+		if (isAuthorized) {
+			if (localStorage.getItem('boughtBooksList')) {
+				ownBooksCount.forEach(el => {
+					el.textContent = boughtBooksList.length;
+				});
+
+				for (let i = 0; i <= boughtBooksList.length - 1; i++) {
+					let li = document.createElement('li');
+					li.classList.add('book-list__item');
+					li.textContent = boughtBooksList[i];
+					profileBooksList.appendChild(li);
+				}
+
+				for (let i = 0; i < booksCollection.length; i++) {
+					if (btnsArray.includes(`btn${i}`)) {
+						buyBtns[i].textContent = `Own`;
+						buyBtns[i].classList.add('own-button');
+						buyBtns[i].setAttribute('disabled', '');
+					}
+				}
+			}
+		}
+
+	}
+	buyBtns.forEach((btn, i) => {
+	
+		btn.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			if (!isAuthorized) {
+				openLoginModal();
+			}
+			if (isAuthorized && hasLibraryCard === false) {
+				openBuyLibraryCardModal();
+			}
+			if (isAuthorized && hasLibraryCard) {
+
+				let boughtBook = `${bookTitles[i].textContent}, ${bookAuthors[i].textContent}`;
+				boughtBooksList.push(boughtBook);
+				localStorage.setItem('boughtBooksList', JSON.stringify(boughtBooksList));
+
+				let li = document.createElement('li');
+				li.classList.add('book-list__item');
+				li.textContent = boughtBook;
+				profileBooksList.appendChild(li);
+
+				btn.textContent = 'Own';
+				btn.classList.add('own-button');
+				btn.setAttribute('disabled', '');
+				btnsArray.push(`btn${i}`);
+				localStorage.setItem('btnsToDisable', JSON.stringify(btnsArray));
+				console.log(boughtBooksList.length)
+				ownBooksCount.forEach(el => {
+					el.textContent = boughtBooksList.length;
+				});
+				
+			};
+		})	
 	}); 
 	//COPY CARD NUMBER
 	copyBtn.addEventListener('click', copyToClipboard);
+	//CLOSE BUY CARD MODAL
+	document.querySelector('.buy-card__close-btn').addEventListener('click', closeBuyLibraryCardModal);
+	//BUY LIBRARY CARD
+	buyCardForm.addEventListener('input', validateForm);
+	buyCardForm.addEventListener('submit', buyLibraryCard);
+
 });
-
-

@@ -930,7 +930,6 @@ section {
   display: flex;
 }
 .sidebar__wrap {
-  /* width: 95%; */
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -1007,7 +1006,7 @@ section {
 }
 .profile__books-list {
   height: 85px;
-  overflow-y: scroll;
+  overflow: auto;
   font-size: 20px;
   letter-spacing: 2px;
   text-transform: capitalize;
@@ -1016,7 +1015,6 @@ section {
   width: 370px;
   margin-bottom: 10px;
   white-space: nowrap;
-  overflow: hidden;
   padding-left: 30px;
   position: relative;
 }
@@ -1079,8 +1077,91 @@ section {
   visibility: visible;
   opacity: 1;
 }
+/* BUY LIBRARY CARD */
+.modal__buy-card {
+  width: 650px;
+  max-width: 90%;
+  padding: 0;
+}
+.buy-card__header {
+  height: 60px;
+  color: var(--white-color);
+  background-color: var(--dark-color);
+  text-align: center;
+  font-family: Forum;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 20px;
+}
+.buy-card__close-btn {
+  top: 22px;
+  right: 18px;
+}
+.buy-card__content {
+  padding: 30px 40px 40px;
+  display: flex;
+  column-gap: 7%;
+}
+.buy-card__text {
+  flex: 0 1 330px;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 2px;
+}
+.buy-card__form {
+  flex: 0 1 200px;
+  display: flex;
+  flex-direction: column;
+}
+.input_short {
+  width: 45px;
+}
+.buy-form__label {
+  margin-bottom: 10px;
+}
+.expire-code__wrap {
+  display: flex;
+  column-gap: 10px;
+  padding-top: 10px;
+}
+.expire-code__wrap input{
+  margin-bottom: 0;
+}
+.cvc-label {
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.buy-form__cvc {
+  margin-bottom: 20px;
+}
+.buy-form__adress {
+  margin-bottom: 20px;
+}
+.buy-form__button-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.buy-card__card-price {
+  color: var(--dark-color);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding-right: 10px;
+}
+.buy-form__btn.disabled {
+  opacity: 0.5;
+}
+.buy-form__btn.disabled:hover {
+  background-color: transparent;
+  border: 1px solid var(--dark-color);
+  cursor: default;
+}
+
 /* MODAL OPEN*/
-.modal-register_open, .modal-login_open, .modal-profile_open {
+.modal-register_open, .modal-login_open, .modal-profile_open, .buy-card_open {
   display: block;
 }
 
@@ -1116,7 +1197,7 @@ section {
     position: fixed;
     top: 0;
     right: -100%;
-    z-index: 2;
+    z-index: 4;
     padding: 98px 20px;
     width: 332px;
     background-color: var(--dark-color);;
@@ -1375,7 +1456,39 @@ section {
     margin-right: 5%; /* 20/550 */
   }
 }
-
+@media (max-width: 620px) {
+  .modal-profile {
+    width: 95%;
+  }
+  .profile-wrap {
+    width: 100%;
+  }
+  .profile__sidebar {
+    flex: 0 0 auto;
+    width: 35%; /* 170/600 */
+    height: auto;
+  }
+  .profile__content {
+    width: 65%
+  }
+  .book-list__item {
+    width: 100%;
+    font-size: 15px;
+  }
+  .profile__user-card {
+    font-size: 15px;
+  }
+  .tooltiptext {
+    width: 125px;
+    font-size: 13px;
+    padding: 4px;
+    bottom: 129%;
+    left: -40px;
+  }
+  .tooltiptext::after {
+    left: 44%;
+  }
+}
 @media (max-width: 550px) {
   section {
     padding: 20px 0 20px 5px;
@@ -1429,6 +1542,56 @@ section {
   }
   .footer-info__open-hours {
     flex: 0 1 45%;
+  }
+  .buy-card__content {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .buy-card__text {
+    flex: 0 1 auto;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .buy-card__header {
+    font-size: 30px;
+  }
+  .buy-card__close-btn {
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    top: 8px;
+    right: 8px;
+  }
+  .sidebar__user-name {
+    min-width: none;
+    max-width: 98%;
+    background-color: var(--white-color);
+    padding: 5px;
+    font-size: 15px;
+  }
+  .tooltiptext {
+    left: -100px;
+  }
+  .tooltiptext::after {
+    left: 91%;
+  }
+  .profile__content-wrap {
+    padding: 35px 10px;
+  }
+  .profile__profile-statistic {
+    width: 100%;
+  }
+  .profile__profile-statistic h5 {
+    font-size: 15px;
+  }
+  .profile__title {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  .close-btn_profile {
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -1488,5 +1651,26 @@ section {
     font-size: 15px;
     text-align: center;
     align-items: center;
+  }
+  .buy-card__header {
+    font-size: 22px;
+  }
+  .profile__rented-books {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .profile-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile__content {
+    width: 90%;
+  }
+  .profile__sidebar {
+    width: 100%;
+    padding: 10px;
+  }
+  .sidebar__user-name {
+    font-size: 21px;
   }
 }
