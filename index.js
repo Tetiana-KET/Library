@@ -10,7 +10,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	};
 	const body = document.body;
-	const header = document.querySelector('.header');
 	const overlay = document.querySelector('.header__burger-overlay');
 	const burgerMenu = document.querySelector('.header-menu__body');
 	const burger = document.querySelector('.header__burger');
@@ -22,13 +21,30 @@ window.addEventListener('DOMContentLoaded', () => {
 	const buttonCloseRegister = document.querySelector('.close-btn_register');
 	const registerLogout = document.querySelector('.link-to-register');
 	const loginMyProfile = document.querySelector('.link-to-login');
-	const buttonLogin = document.querySelector('.button login-btn');
 	const registerForm = document.querySelector('.register-form');
 	const loginForm = document.querySelector('.login-form');
 	const buttonCheckCard = document.querySelector('.button_check-card');
+	const profile = document.querySelector('.modal-profile');
+	const buttonCloseProfile = document.querySelector('.close-btn_profile');
+	const buyBtns = document.querySelectorAll('.book__button');
+	const copyBtn = document.querySelector('.user-card__copy-btn');
+	const modalBuyCard = document.querySelector('.modal__buy-card');
+	const buyCardForm = document.querySelector('.buy-card__form');
+	const buyCardFormBtn = document.querySelector('.buy-form__btn');
+	const booksCollection = document.querySelectorAll('.book');
+	const ownBooksCount = document.querySelectorAll('.own-books__count');
+	const bookTitles = document.querySelectorAll('.book__title');
+	const bookAuthors = document.querySelectorAll('.book_author');
+	const profileBooksList = document.querySelector('.profile__books-list');
+
+	let boughtBooksList = JSON.parse(localStorage.getItem('boughtBooksList')) || [];
+	let btnsArray = JSON.parse(localStorage.getItem('btnsToDisable')) || [];
+
 	let isAuthorized = JSON.parse(localStorage.getItem('isAuthorized'));
+	let hasLibraryCard = JSON.parse(localStorage.getItem('hasLibraryCard'));
 
 	checkAuthorization();
+	setBoughtBookAfterReload();
 
 	function lockBodyScroll() {
 		body.classList.add('no-scroll');
@@ -56,6 +72,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			closeDropMenu();
 			closeLoginModal();
 			closeRegisterModal();
+			closeProfile();
+			closeBuyLibraryCardModal();
 		}
 
 		if (targetItem.closest('.header__profile-icon')) {
@@ -74,7 +92,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	function closeBurgerMenu() {
 		burgerMenu.classList.remove('menu-open');
 		burger.classList.remove('menu-open');
-
 		overlay.classList.remove('active-overlay');
 		unlockBodyScroll();
 	}
@@ -141,7 +158,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		localStorage.setItem('cardNumber', cardNumber);
 		localStorage.setItem('visitCounter', 1);
 		localStorage.setItem('isAuthorized', true);
-		localStorage.setItem('libraryCardOwn', false);
+		localStorage.setItem('hasLibraryCard', false);
 
 		closeRegisterModal();
 		location.reload();
@@ -150,66 +167,131 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (isAuthorized) {
 			body.classList.add('authorized-user');
 			setUserInitials();
-			changeCardsSectionContent();
+			changeCardsSectionAndProfileContent();
 			changeDropMenuContent();
 		}
 	}
 	function setUserInitials () {
 		const initials = (localStorage.userFirstName[0] + localStorage.userLastName[0]).toUpperCase();
 		headerProfileIcon.textContent = `${initials}`;
+		headerProfileIcon.setAttribute(
+			'title',
+			`${localStorage.userFirstName} ${localStorage.userLastName}`
+		);
+		const profileAvatar = document.querySelector('.sidebar__avatar p');
+		profileAvatar.textContent = `${initials}`;
 	}
-	function changeCardsSectionContent () {
+	function changeCardsSectionAndProfileContent () {
 		const cardTitle = document.querySelector('.card-find__title');
 		const visitProfile= document.querySelector('.card-get__title');
 		const description = document.querySelector('.card-get__text');
 		const readerCardName = document.querySelector('.reader-card__name');
 		const readerCardNumber = document.querySelector('.reader-card__number');
-		
+		const sidebarUserName = document.querySelector('.sidebar__user-name');
+		const profileUserCard = document.querySelector('.user-card__number');
+
+		const userName = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+		const userCard = localStorage.getItem('cardNumber');
+
 		cardTitle.textContent = 'Your Library card';
-		readerCardName.value = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`;
+		readerCardName.value = userName;
+		sidebarUserName.textContent = userName;
 		readerCardName.setAttribute('disabled', true);
-		readerCardNumber.value = localStorage.getItem('cardNumber');
+		readerCardNumber.value = userCard;
+		profileUserCard.textContent = userCard;
 		readerCardNumber.setAttribute('disabled', true);
 		visitProfile.textContent = 'Visit your profile';
 		description.textContent = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
 		updateStatistic();
 	}
 	function updateStatistic () {
-		const visitCounts = document.querySelector('.visits__count');
-		visitCounts.textContent = localStorage.getItem('visitCounter');
+		const visitCounts = document.querySelectorAll('.visits__count');
+		visitCounts.forEach((counter) => {
+			counter.textContent = localStorage.getItem('visitCounter');
+		});
 	}
 	function changeDropMenuContent () {
 		registerLogout.textContent = 'Log Out';
 	  loginMyProfile.textContent = 'My profile';
 		document.querySelector('.drop-menu__title').textContent = localStorage.getItem('cardNumber');
 		document.querySelector('.drop-menu__title').style.fontSize = '12px';
-	};
+	}
 	function checkCardNumber (e) {
 		e.preventDefault();
 
 		const readerCardNameEntered = document.querySelector('.reader-card__name').value.toLowerCase();
 		const readerCardNumberEntered = document.querySelector('.reader-card__number').value.toLowerCase();
 		
-		const cardNumber = localStorage.getItem('cardNumber');
+		const cardNumber = localStorage.getItem('cardNumber').toLowerCase();
 		const userName = `${localStorage.getItem('userFirstName')} ${localStorage.getItem('userLastName')}`.toLowerCase();
 		const userNameReverse = `${localStorage.getItem('userLastName')} ${localStorage.getItem('userFirstName')}`.toLowerCase();
-		const statistics = document.querySelector('.library-cards__profile-statistic ');
+		const statistics = document.querySelector('.library-cards__profile-statistic');
 
 		if (
 			cardNumber === readerCardNumberEntered &&
 			(readerCardNameEntered === userName ||
 			 readerCardNameEntered === userNameReverse)
 		) {
+			
 			buttonCheckCard.classList.add('show-statistic');
 			statistics.classList.add('show-statistic');
 			updateStatistic();
 			setTimeout(()=> {
 				buttonCheckCard.classList.remove('show-statistic');
 				statistics.classList.remove('show-statistic');
-			}, 1000)
+			}, 10000)
 		}
 	}
+	function openProfile () {
+		profile.classList.add('modal-profile_open');
+		overlay.classList.add('active-overlay');
+		lockBodyScroll();
+	}
+	function closeProfile () {
+		profile.classList.remove('modal-profile_open');
+		overlay.classList.remove('active-overlay');
+		unlockBodyScroll();
+	}
+	function copyToClipboard (e) {
+		e.preventDefault();
 
+		const input = document.createElement('input');
+		const cardNum = document.querySelector('.user-card__number');
+		input.value = cardNum.textContent;
+		input.select();
+		document.execCommand('copy');
+		navigator.clipboard.writeText(input.value);	 
+	}
+	function openBuyLibraryCardModal () {
+		overlay.classList.add('active-overlay');
+		lockBodyScroll();
+		modalBuyCard.classList.add('buy-card_open');
+	}
+	function closeBuyLibraryCardModal() {
+		overlay.classList.remove('active-overlay');
+		unlockBodyScroll();
+		modalBuyCard.classList.remove('buy-card_open');
+	}
+	function buyLibraryCard (e) {
+		e.preventDefault();
+
+		localStorage.setItem('hasLibraryCard', true);
+		closeBuyLibraryCardModal();
+		location.reload();
+	}
+	function validateForm () {
+		if (
+			!buyCardForm.checkValidity() &&
+			!buyCardFormBtn.classList.contains('disabled')
+		) {
+			buyCardFormBtn.classList.add('disabled');
+		} else if (
+			buyCardForm.checkValidity() &&
+			buyCardFormBtn.classList.contains('disabled')
+		) {
+			buyCardFormBtn.classList.remove('disabled');
+		}
+	};
 	//SLIDER
 	let position = 0;
 	let dotIndex = 0;
@@ -220,7 +302,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const paginationItems = Array.from(
 		document.querySelectorAll('.pagination__item')
 	);
-
 	function setActiveDot(dotIndex) {
 		paginationItems.forEach(dot => {
 			dot.classList.remove('dot__active');
@@ -270,7 +351,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			moveSlider();
 		});
 	});
-
 	//FAVORITES "SLIDER"
 	const pickSeasonInput = Array.from(
 		document.querySelectorAll('.pick-season__input')
@@ -278,7 +358,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const favoriteSeasons = Array.from(
 		document.querySelectorAll('.favorites__items')
 	);
-
 	//EVENTLISTENER
 	document.addEventListener('click', e => {
 		if (e.target.classList.contains('pick-season__input')) {
@@ -308,8 +387,15 @@ window.addEventListener('DOMContentLoaded', () => {
 			closeRegisterModal();
 			openLoginModal();
 		} else if (
+			(e.target.classList.contains('link-to-login') && e.target.textContent === 'My profile') || 
+			 e.target.classList.contains('link-to-profile')
+		  ) {
+			closeDropMenu();
+			openProfile();
+		} else if (
 			e.target.classList.contains('link-to-register') &&
-			(e.target.textContent === 'Register' || e.target.textContent === 'Sign Up')
+			(e.target.textContent === 'Register' ||
+				e.target.textContent === 'Sign Up')
 		) {
 			closeDropMenu();
 			closeLoginModal();
@@ -329,6 +415,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	nextBtn.addEventListener('click', setNextSlide);
 	buttonCloseLogin.addEventListener('click', closeLoginModal);
 	buttonCloseRegister.addEventListener('click', closeRegisterModal);
+	buttonCloseProfile.addEventListener('click', closeProfile);
 	//REGISTRATION
 	registerForm.addEventListener('submit', e => {
 		e.preventDefault();
@@ -359,6 +446,73 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 	//	CHECK CARD
 	buttonCheckCard.addEventListener('click', checkCardNumber);
+	//BUY BOOK
+	function setBoughtBookAfterReload () {
+		if (isAuthorized) {
+			if (localStorage.getItem('boughtBooksList')) {
+				ownBooksCount.forEach(el => {
+					el.textContent = boughtBooksList.length;
+				});
+
+				for (let i = 0; i <= boughtBooksList.length - 1; i++) {
+					let li = document.createElement('li');
+					li.classList.add('book-list__item');
+					li.textContent = boughtBooksList[i];
+					profileBooksList.appendChild(li);
+				}
+
+				for (let i = 0; i < booksCollection.length; i++) {
+					if (btnsArray.includes(`btn${i}`)) {
+						buyBtns[i].textContent = `Own`;
+						buyBtns[i].classList.add('own-button');
+						buyBtns[i].setAttribute('disabled', '');
+					}
+				}
+			}
+		}
+
+	}
+	buyBtns.forEach((btn, i) => {
+	
+		btn.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			if (!isAuthorized) {
+				openLoginModal();
+			}
+			if (isAuthorized && hasLibraryCard === false) {
+				openBuyLibraryCardModal();
+			}
+			if (isAuthorized && hasLibraryCard) {
+
+				let boughtBook = `${bookTitles[i].textContent}, ${bookAuthors[i].textContent}`;
+				boughtBooksList.push(boughtBook);
+				localStorage.setItem('boughtBooksList', JSON.stringify(boughtBooksList));
+
+				let li = document.createElement('li');
+				li.classList.add('book-list__item');
+				li.textContent = boughtBook;
+				profileBooksList.appendChild(li);
+
+				btn.textContent = 'Own';
+				btn.classList.add('own-button');
+				btn.setAttribute('disabled', '');
+				btnsArray.push(`btn${i}`);
+				localStorage.setItem('btnsToDisable', JSON.stringify(btnsArray));
+				console.log(boughtBooksList.length)
+				ownBooksCount.forEach(el => {
+					el.textContent = boughtBooksList.length;
+				});
+				
+			};
+		})	
+	}); 
+	//COPY CARD NUMBER
+	copyBtn.addEventListener('click', copyToClipboard);
+	//CLOSE BUY CARD MODAL
+	document.querySelector('.buy-card__close-btn').addEventListener('click', closeBuyLibraryCardModal);
+	//BUY LIBRARY CARD
+	buyCardForm.addEventListener('input', validateForm);
+	buyCardForm.addEventListener('submit', buyLibraryCard);
+
 });
-
-
