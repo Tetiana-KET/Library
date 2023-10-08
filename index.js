@@ -470,7 +470,6 @@ window.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 		}
-
 	}
 	buyBtns.forEach((btn, i) => {
 	
@@ -499,11 +498,10 @@ window.addEventListener('DOMContentLoaded', () => {
 				btn.setAttribute('disabled', '');
 				btnsArray.push(`btn${i}`);
 				localStorage.setItem('btnsToDisable', JSON.stringify(btnsArray));
-				console.log(boughtBooksList.length)
+
 				ownBooksCount.forEach(el => {
 					el.textContent = boughtBooksList.length;
 				});
-				
 			};
 		})	
 	}); 
@@ -514,5 +512,4 @@ window.addEventListener('DOMContentLoaded', () => {
 	//BUY LIBRARY CARD
 	buyCardForm.addEventListener('input', validateForm);
 	buyCardForm.addEventListener('submit', buyLibraryCard);
-
 });
